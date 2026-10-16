@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-dotenv.config({ path: path.resolve(__dirname, '../.env') });
+dotenv.config({ path: path.resolve(__dirname, '../.env'), quiet: true });
 
 export interface Course {
     id: string;
@@ -26,10 +26,24 @@ export class CoursewebClient {
     private browser: Browser | null = null;
     private context: BrowserContext | null = null;
 
+    private getLaunchOptions(headless: boolean = true) {
+        const options: any = { headless };
+        if (process.env.CHROME_PATH) {
+            options.executablePath = process.env.CHROME_PATH;
+        } else if (fs.existsSync('/usr/bin/google-chrome')) {
+            options.executablePath = '/usr/bin/google-chrome';
+        } else if (fs.existsSync('/usr/bin/google-chrome-stable')) {
+            options.executablePath = '/usr/bin/google-chrome-stable';
+        } else if (fs.existsSync('/usr/bin/chromium-browser')) {
+            options.executablePath = '/usr/bin/chromium-browser';
+        } else {
+            options.channel = 'chrome';
+        }
+        return options;
+    }
+
     async init() {
-        this.browser = await chromium.launch({
-            headless: process.env.HEADLESS !== 'false',
-        });
+        this.browser = await chromium.launch(this.getLaunchOptions(process.env.HEADLESS !== 'false'));
         
         const sessionPath = path.resolve(__dirname, '../storage_state.json');
         
@@ -72,7 +86,7 @@ export class CoursewebClient {
 
     async interactiveLogin() {
         // Force a visible browser specifically for interactive login
-        const interactiveBrowser = await chromium.launch({ headless: false });
+        const interactiveBrowser = await chromium.launch(this.getLaunchOptions(false));
         const loginContext = await interactiveBrowser.newContext();
         const page = await loginContext.newPage();
         
@@ -116,8 +130,27 @@ export class CoursewebClient {
         if (await loginButton.count() > 0) {
             await loginButton.click();
             await page.waitForSelector('input[type="email"]');
-            await page.fill('input[type="email"]', process.env.SLIIT_USERNAME + '@my.sliit.lk');
+            const username = process.env.SLIIT_USERNAME?.includes('@')
+                ? process.env.SLIIT_USERNAME
+                : `${process.env.SLIIT_USERNAME}@my.sliit.lk`;
+            await page.fill('input[type="email"]', username);
             await page.click('input[type="submit"]');
+
+            if (process.env.SLIIT_PASSWORD) {
+                try {
+                    await page.waitForSelector('input[type="password"]', { timeout: 8000 });
+                    await page.fill('input[type="password"]', process.env.SLIIT_PASSWORD);
+                    await page.click('input[type="submit"]');
+
+                    // If "Stay signed in?" (KMSI) screen appears
+                    const staySignedInBtn = page.locator('input[type="submit"][value="Yes"], #idSIButton9');
+                    if (await staySignedInBtn.isVisible({ timeout: 5000 }).catch(() => false)) {
+                        await staySignedInBtn.click();
+                    }
+                } catch {
+                    // Password input might be skipped or MFA required
+                }
+            }
         } else {
             await page.fill('#username', process.env.SLIIT_USERNAME || '');
             await page.fill('#password', process.env.SLIIT_PASSWORD || '');
@@ -142,19 +175,30 @@ export class CoursewebClient {
         await page.goto('https://courseweb.sliit.lk/my/courses.php', { waitUntil: 'networkidle' });
 
         try {
-            await page.waitForSelector('.course-info-container, .coursename', { timeout: 10000 });
+            await page.waitForSelector('.course-info-container, .coursename, [data-region="course-content"], .dashboard-card', { timeout: 10000 });
             const courses = await page.evaluate(() => {
-                const items = document.querySelectorAll('.course-info-container, .coursename');
-                return Array.from(items).map(item => {
+                const items = document.querySelectorAll('.course-info-container, .coursename, .dashboard-card, [data-region="course-content"] .card');
+                const list: Array<{ id: string; name: string; url: string }> = [];
+                const seenIds = new Set<string>();
+
+                items.forEach(item => {
                     const anchor = item.querySelector('a') as HTMLAnchorElement;
-                    if (!anchor) return null;
-                    const url = new URL(anchor.href);
-                    return {
-                        id: url.searchParams.get('id') || '',
-                        name: anchor.innerText.trim(),
-                        url: anchor.href
-                    };
-                }).filter(c => c !== null);
+                    if (!anchor || !anchor.href) return;
+                    try {
+                        const url = new URL(anchor.href);
+                        const id = url.searchParams.get('id') || '';
+                        const rawName = anchor.innerText.trim();
+                        const lines = rawName.split('\n')
+                            .map(l => l.trim())
+                            .filter(l => l && !l.startsWith('Course is starred') && !l.startsWith('Course name') && !l.startsWith('Select course'));
+                        const name = lines[0] || rawName;
+                        if (id && name && !seenIds.has(id)) {
+                            seenIds.add(id);
+                            list.push({ id, name, url: anchor.href });
+                        }
+                    } catch {}
+                });
+                return list;
             });
             await page.close();
             return courses;
@@ -250,8 +294,14 @@ export class CoursewebClient {
             const eventCards = document.querySelectorAll('.event');
             return Array.from(eventCards).map(card => {
                 const title = card.querySelector('.name')?.textContent?.trim() || '';
-                const date = card.querySelector('.description')?.textContent?.trim() || '';
-                const course = card.querySelector('.course')?.textContent?.trim() || '';
+                const descText = card.querySelector('.description')?.textContent?.trim() || '';
+                const lines = descText.split('\n').map(l => l.trim()).filter(Boolean);
+                const date = lines[0] || '';
+                let course = card.querySelector('.course')?.textContent?.trim() || '';
+                if (!course && lines.length > 1) {
+                    const courseLine = lines.find(l => l.includes(' - ') || l.includes('[20'));
+                    if (courseLine) course = courseLine;
+                }
                 return { title, date, course };
             });
         });
@@ -260,14 +310,66 @@ export class CoursewebClient {
         return events;
     }
 
-    async downloadFile(url: string, outputDirectory: string = './downloads'): Promise<string> {
+    async downloadFile(url: string, outputDirectory: string = './downloads', customFilename?: string): Promise<string> {
         if (!this.context) throw new Error('Client not initialized');
-        const page = await this.context.newPage();
         
         if (!fs.existsSync(outputDirectory)){
             fs.mkdirSync(outputDirectory, { recursive: true });
         }
-        
+
+        // Method 1: Fast direct request via Playwright's authenticated APIRequestContext
+        try {
+            let response = await this.context.request.get(url, { maxRedirects: 10 });
+            
+            // If Incapsula WAF blocks .sql or returns 403, retry with trailing slash bypass
+            if (response.status() === 403 && response.url().includes('pluginfile.php')) {
+                const base = response.url().split('?')[0] || '';
+                const cleanUrl = base.replace(/\/+$/, '');
+                response = await this.context.request.get(cleanUrl + '/?forcedownload=1');
+            }
+
+            const contentType = response.headers()['content-type'] || '';
+            const contentDisposition = response.headers()['content-disposition'] || '';
+            
+            const isBinary = !contentType.includes('text/html') || contentDisposition.includes('filename=') || response.url().includes('pluginfile.php');
+            
+            if (response.status() === 200 && isBinary) {
+                let filename = customFilename;
+                if (!filename && contentDisposition) {
+                    const match = contentDisposition.match(/filename\*?=['"]?(?:UTF-\d['"]*)?([^;\r\n"']*)['"]?/i);
+                    if (match && match[1]) filename = decodeURIComponent(match[1].trim());
+                }
+                if (!filename) {
+                    const cleanUrl = response.url().replace(/\/\?.*$/, '');
+                    const urlPath = new URL(cleanUrl).pathname;
+                    filename = path.basename(urlPath);
+                }
+                if (!filename || filename === 'view.php') {
+                    filename = `download_${Date.now()}`;
+                }
+
+                const finalPath = path.resolve(outputDirectory, filename);
+                const tempPath = path.resolve(outputDirectory, `.temp_${filename}`);
+                const buffer = await response.body();
+
+                if (fs.existsSync(finalPath)) {
+                    const existingHash = crypto.createHash('md5').update(fs.readFileSync(finalPath)).digest('hex');
+                    const newHash = crypto.createHash('md5').update(buffer).digest('hex');
+                    if (existingHash === newHash) {
+                        return `File already exists and is up-to-date: ${finalPath}`;
+                    }
+                }
+
+                fs.writeFileSync(tempPath, buffer);
+                fs.renameSync(tempPath, finalPath);
+                return `Downloaded new or updated file: ${finalPath}`;
+            }
+        } catch (e: any) {
+            // Direct request failed, fallback to browser page download
+        }
+
+        // Method 2: Browser page download fallback
+        const page = await this.context.newPage();
         try {
             const downloadPromise = page.waitForEvent('download', { timeout: 15000 });
             await page.goto(url, { waitUntil: 'domcontentloaded' });
@@ -278,33 +380,29 @@ export class CoursewebClient {
             }
             
             const download = await downloadPromise;
-            const suggestedName = download.suggestedFilename();
+            const suggestedName = customFilename || download.suggestedFilename();
             const finalPath = path.resolve(outputDirectory, suggestedName);
             const tempPath = path.resolve(outputDirectory, `.temp_${suggestedName}`);
             
-            // Download to a temporary file first
             await download.saveAs(tempPath);
             
-            // If the file already exists, check if it was updated
             if (fs.existsSync(finalPath)) {
                 const existingHash = crypto.createHash('md5').update(fs.readFileSync(finalPath)).digest('hex');
                 const newHash = crypto.createHash('md5').update(fs.readFileSync(tempPath)).digest('hex');
                 
                 if (existingHash === newHash) {
-                    fs.unlinkSync(tempPath); // Delete the temp file, it's identical
+                    fs.unlinkSync(tempPath);
                     await page.close();
                     return `File already exists and is up-to-date: ${finalPath}`;
                 }
             }
             
-            // If it's new or updated, replace the old one
             fs.renameSync(tempPath, finalPath);
             await page.close();
             return `Downloaded new or updated file: ${finalPath}`;
-            
         } catch (e: any) {
             await page.close();
-            throw new Error(`Failed to download from ${url}. It might be a regular page and not a direct file link. Error: ${e.message}`);
+            throw new Error(`Failed to download from ${url}. Error: ${e.message}`);
         }
     }
 
