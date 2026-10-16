@@ -1,7 +1,0 @@
-# https://www.robotstxt.org/robotstxt.html
-User-agent: *
-Allow: /
-
-# Host & Sitemap
-Host: https://sliitcoursewebmcp.kesaru.me
-Sitemap: https://sliitcoursewebmcp.kesaru.me/sitemap.xml

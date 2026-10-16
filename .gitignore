@@ -13,3 +13,7 @@ brag-output/
 brag-vertical-en/
 brag-vertical-si/
 *.mov
+Screenshot*.jpg
+assets/Screenshot*.jpg
+LINKEDIN_*.md
+site/
