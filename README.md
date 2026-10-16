@@ -34,10 +34,21 @@ Watch Claude Code autonomously parse a **103-page PDF exam marksheet**, locate a
 <div align="center">
 
 <video src="assets/courseweb-launch-preview.mp4" poster="assets/courseweb-launch-poster.jpg" width="100%" controls playsinline>
-  <p>Your browser doesn't support HTML5 video. <a href="assets/courseweb-launch-preview.mp4"><b>Click here to view or download the launch video (600KB MP4)</b></a>.</p>
+  <a href="https://raw.githubusercontent.com/kesaruhasun/mcp-sliit-courseweb/main/assets/courseweb-launch-preview.mp4">
+    <img src="assets/courseweb-launch-poster.jpg" alt="Click to Watch Launch Video" width="100%" style="border-radius: 10px;" />
+  </a>
 </video>
 
-<sub>*Compressed high-efficiency 720p 60fps faststart preview (600 KB). Shot live using Claude Code CLI and Hyperframes.*</sub>
+<p align="center">
+  <a href="https://raw.githubusercontent.com/kesaruhasun/mcp-sliit-courseweb/main/assets/courseweb-launch-preview.mp4">
+    ▶️ <b>Watch 20-Second Launch Video (600 KB MP4)</b>
+  </a> • 
+  <a href="https://sliitcoursewebmcp.kesaru.me/#video-demo">
+    🌐 <b>Stream in 1080p on Live Web Portal</b>
+  </a>
+</p>
+
+<sub><em>Compressed 720p 60fps faststart preview (600 KB). Captured live running in Claude Code CLI.</em></sub>
 
 </div>
 
