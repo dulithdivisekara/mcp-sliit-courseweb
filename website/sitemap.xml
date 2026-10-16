@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url>
+    <loc>https://sliitcoursewebmcp.kesaru.me/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sliitcoursewebmcp.kesaru.me/"/>
+    <xhtml:link rel="alternate" hreflang="si" href="https://sliitcoursewebmcp.kesaru.me/?lang=si"/>
+    <xhtml:link rel="alternate" hreflang="ta" href="https://sliitcoursewebmcp.kesaru.me/?lang=ta"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sliitcoursewebmcp.kesaru.me/"/>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <video:video>
+      <video:thumbnail_loc>https://sliitcoursewebmcp.kesaru.me/assets/courseweb-launch-poster.jpg</video:thumbnail_loc>
+      <video:title>SLIIT Courseweb MCP Server — Launch Showcase</video:title>
+      <video:description>Watch how SLIIT Courseweb MCP extracts exam marks from 103-page PDFs, tracks assignment deadlines, and configures itself into AI agents.</video:description>
+      <video:content_loc>https://sliitcoursewebmcp.kesaru.me/assets/courseweb-launch-trailer.mp4</video:content_loc>
+      <video:duration>20</video:duration>
+      <video:publication_date>2026-10-17</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
+  </url>
+</urlset>

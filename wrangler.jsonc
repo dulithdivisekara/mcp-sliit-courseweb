@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sliitcoursewebmcp",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-02-24",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": "./website",
+    "binding": "ASSETS"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "courseweb-db",
+      "database_id": "5c696013-4642-47e7-958f-865bb3397610"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "MEDIA",
+      "bucket_name": "courseweb-media"
+    }
+  ]
+}

@@ -1,346 +1,291 @@
-<p align="center">
-  <a href="https://sliitcoursewebmcp.kesaru.me/">
-    <img src="assets/kesaru-pig-logo-sm.jpg" alt="SLIIT Courseweb MCP Logo" width="80" height="80" style="border-radius: 20px; box-shadow: 0 4px 14px rgba(0,0,0,0.1);">
-  </a>
-</p>
+<div align="center">
 
-<h1 align="center">SLIIT Courseweb MCP Server</h1>
+<img src="assets/kesaru-pig-logo-sm.jpg" alt="SLIIT Courseweb MCP Logo" width="84" style="border-radius: 50%; box-shadow: 0 4px 14px rgba(0,0,0,0.12);" />
 
-<p align="center">
-  <b>Connect your Moodle LMS directly into Claude Code, Cursor, Google Antigravity, and Windsurf.</b><br>
-  Sync lecture slides, extract exam marks from 100+ page PDFs, and track assignment deadlines in one human prompt.
-</p>
+# SLIIT Courseweb MCP Server 🚀
 
-<p align="center">
-  <a href="https://sliitcoursewebmcp.kesaru.me/"><img src="https://img.shields.io/badge/Live_Website-sliitcoursewebmcp.kesaru.me-18181b?style=flat-square&logo=safari&logoColor=white" alt="Live Website"></a>
-  <a href="https://modelcontextprotocol.io/"><img src="https://img.shields.io/badge/MCP-Standard_Compliant-000000?style=flat-square&logo=anthropic&logoColor=white" alt="MCP Compatible"></a>
-  <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Node.js-20%2B-339933?style=flat-square&logo=nodedotjs&logoColor=white" alt="Node.js 20+"></a>
-  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=flat-square" alt="MIT License"></a>
-  <a href="https://github.com/kesaruhasun"><img src="https://img.shields.io/badge/Author-Kesaru_Hasun-f59e0b?style=flat-square" alt="Author"></a>
-</p>
+**Bridge SLIIT Courseweb (Moodle) into Claude Code, Cursor, Antigravity & AI Coding Assistants.**
+
+[![MCP Protocol](https://img.shields.io/badge/MCP-Model_Context_Protocol-blue.svg?style=for-the-badge)](https://modelcontextprotocol.io)
+[![Live Website](https://img.shields.io/badge/Live_Site-sliitcoursewebmcp.kesaru.me-16a34a.svg?style=for-the-badge)](https://sliitcoursewebmcp.kesaru.me)
+[![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933.svg?style=for-the-badge&logo=node.js)](https://nodejs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0%2B-3178C6.svg?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
+
+<br/>
 
 <p align="center">
-  <a href="#-the-problem-statement">Problem</a> •
-  <a href="#-watch-the-launch-showcase">Watch Demo</a> •
-  <a href="#-1-prompt-agent-self-installation">1-Prompt Install</a> •
-  <a href="#-authentication-methods">Login Methods</a> •
-  <a href="#-real-superpower-proofs">Superpowers</a> •
-  <a href="#-mcp-tools-reference">Tools Reference</a> •
-  <a href="#-port-to-your-university">Adapt for Your Uni</a>
+  <a href="#-quick-video-showcase"><b>Watch Video</b></a> •
+  <a href="#-1-prompt-agent-self-installation"><b>1-Prompt Install</b></a> •
+  <a href="#-login-methods"><b>Login & MFA</b></a> •
+  <a href="#-tool-reference"><b>Tools (9)</b></a> •
+  <a href="#-student-superpowers"><b>Superpowers</b></a> •
+  <a href="https://sliitcoursewebmcp.kesaru.me"><b>Live Website</b></a>
 </p>
 
 ---
 
-## 🎬 Watch the Launch Showcase
+</div>
 
-> **Experience the SLIIT Courseweb MCP Server in action.** Watch how Claude Code autonomously reads a 103-page marksheet PDF, identifies the student's marks, and syncs course lecture decks in seconds.
+## 🎬 Quick Video Showcase
 
-<p align="center">
-  <video src="https://sliitcoursewebmcp.kesaru.me/assets/courseweb-launch-trailer.mp4" poster="assets/courseweb-launch-poster.jpg" controls="controls" width="100%" style="border-radius: 12px; border: 1px solid #e4e4e7; max-width: 920px;">
-    <a href="https://sliitcoursewebmcp.kesaru.me/assets/courseweb-launch-trailer.mp4">
-      <img src="assets/courseweb-launch-poster.jpg" alt="Watch Launch Showcase" width="100%" style="border-radius: 12px;">
-    </a>
-  </video>
-  <br>
-  <sub><i>Video not playing? <a href="https://sliitcoursewebmcp.kesaru.me/assets/courseweb-launch-trailer.mp4">Direct MP4 Download</a> · <a href="https://sliitcoursewebmcp.kesaru.me/">Explore Interactive Trilingual Website (English / සිංහල / தமிழ்)</a></i></sub>
-</p>
+Watch Claude Code autonomously parse a **103-page PDF exam marksheet**, locate a student's grade breakdown, and delta-sync lecture slides without opening a single browser tab:
 
----
+<div align="center">
 
-## 😫 The Problem Statement
+<video src="assets/courseweb-launch-preview.mp4" poster="assets/courseweb-launch-poster.jpg" width="100%" controls playsinline>
+  <p>Your browser doesn't support HTML5 video. <a href="assets/courseweb-launch-preview.mp4"><b>Click here to view or download the launch video (600KB MP4)</b></a>.</p>
+</video>
 
-If you are a student at SLIIT (or any university using Moodle LMS), your daily workflow looks like this:
-1. **Waiting for Courseweb to load** during peak hours or exam submission deadlines.
-2. **Navigating through 4 levels of nested folders** just to download Lecture 07 slides.
-3. **Downloading massive 103-page marksheet PDFs**, then manually squinting to find your student ID (`ITxxxxxxxx`) among 1,200 classmates.
-4. **Missing deadlines** because assignment notifications are buried deep inside separate course modules.
+<sub>*Compressed high-efficiency 720p 60fps faststart preview (600 KB). Shot live using Claude Code CLI and Hyperframes.*</sub>
 
-### The MCP Solution
-Instead of clicking around a browser, **bring Courseweb directly into your AI coding assistant**. Your AI agent (Claude Code, Cursor, Antigravity, or Windsurf) uses this MCP server to interact with Courseweb in the background.
-
-```
-You: "Check my marks for IE2012 in the new PDF and sync today's slides."
-AI:  "Found your marks: Question 1: 18/20, Question 2: 24/25. Total: 84%.
-      Downloaded 2 new lecture slides to ./Software_Engineering_Notes (skipped 14 unchanged files)."
-```
+</div>
 
 ---
 
-## 💡 What is an MCP? (In 1 Sentence)
+## 💡 Why This Exists
 
-> **Model Context Protocol (MCP)** is an open standard created by Anthropic that acts like a universal USB port for AI models — allowing coding assistants like Claude, Cursor, and Antigravity to safely query your real-world tools, databases, and websites without custom plugins.
+SLIIT Courseweb is the central hub for lecture materials, lab sheets, and assignment submissions. But every semester, students face the same bottlenecks:
+
+* ⏳ **Slow loading during peak hours**: Courseweb crawls right before assignment submission deadlines.
+* 📑 **100+ Page Exam Marksheet PDFs**: Midterm and final marks are released as massive multi-page PDFs where finding your IT number is a chore.
+* 📦 **Manual Download Fatigue**: Downloading 14 weeks of lecture slides, lab exercises, and tutorial answers requires clicking dozens of links.
+* ⏰ **Missed Deadlines**: Assignment cutoffs are scattered across individual course tabs.
+
+**The Solution:** An open-source **Model Context Protocol (MCP)** server that allows your AI agent (Claude Code, Cursor, Antigravity, Windsurf) to query Courseweb directly. Your agent acts as your personal academic assistant.
 
 ---
 
 ## ⚡ 1-Prompt Agent Self-Installation
 
-You don't need to manually write JSON configuration files. Simply **copy the universal prompt below and paste it into your AI assistant** (Claude Code, Antigravity, Cursor, or Windsurf). The AI will configure itself!
+You don't need to manually edit JSON configuration files. Just copy the prompt for your favorite AI assistant, paste it into the agent chat, and let the agent configure itself!
 
-### 📋 The Universal Self-Install Prompt
+### 🟧 Claude Code CLI
 
-```text
-Please install and configure the SLIIT Courseweb MCP server for this workspace.
+```markdown
+Please configure the SLIIT Courseweb MCP server for Claude Code CLI:
+1. Run: git clone https://github.com/kesaruhasun/mcp-sliit-courseweb.git
+2. Inside the folder run: npm install && npm run build
+3. Add to Claude Code MCP registry:
+   claude mcp add sliit_courseweb node "$(pwd)/build/index.js" -e HEADLESS=true
+4. Run `claude mcp list` to verify the server is connected.
+5. Remind me to perform `interactive_login` if my session token is expired.
+```
 
-Repository: https://github.com/kesaruhasun/courseweb_automation.git
-Build steps:
-1. Clone the repository or inspect local source: cd courseweb_automation && npm install && npm run build
-2. Configure your MCP settings:
-   - Command: node
-   - Args: ["<ABSOLUTE_PATH>/courseweb_automation/build/index.js"]
-   - Environment:
-       SLIIT_USERNAME: "your_it_number"
-       SLIIT_PASSWORD: "your_courseweb_password"
-       HEADLESS: "true"
-3. Test connectivity by running the `list_modules` tool.
+### 🟦 Google Antigravity
+
+```markdown
+Antigravity, please self-configure the SLIIT Courseweb MCP server:
+1. Clone `https://github.com/kesaruhasun/mcp-sliit-courseweb.git` or inspect the local repo.
+2. Run `npm install` and compile TypeScript using `npm run build`.
+3. Add the `sliit_courseweb` definition into your MCP configuration (`mcp_config.json`) pointing `command` to `node` and `args` to the absolute path of `build/index.js`.
+4. Confirm tool schema registration for `list_modules`, `sync_module`, and `get_deadlines`.
+5. Guide me on running `interactive_login` or injecting `MoodleSession` via `set_session_cookie`.
+```
+
+### ⬛ Cursor Composer / IDE
+
+```markdown
+You are my Cursor coding agent. Please install and self-configure the SLIIT Courseweb MCP server in this workspace:
+1. Verify if git, node (v18+), and npm are installed.
+2. Clone `https://github.com/kesaruhasun/mcp-sliit-courseweb.git`.
+3. Inside the cloned directory, run `npm install && npm run build`.
+4. Configure `.cursor/mcp.json` in workspace root:
+   {
+     "mcpServers": {
+       "sliit_courseweb": {
+         "command": "node",
+         "args": ["<ABSOLUTE_PATH_TO_BUILD_INDEX_JS>"],
+         "env": {
+           "SLIIT_USERNAME": "your_it_number",
+           "SLIIT_PASSWORD": "your_password",
+           "HEADLESS": "true"
+         }
+       }
+     }
+   }
+5. Check if `storage_state.json` exists. If not, guide me to run `interactive_login` or set my cookie via `set_session_cookie`.
+```
+
+### 🟩 Windsurf Cascade
+
+```markdown
+Cascade, please install the SLIIT Courseweb MCP server for this session:
+1. Clone `https://github.com/kesaruhasun/mcp-sliit-courseweb.git` and compile: `npm install && npm run build`.
+2. Add the configuration to `~/.codeium/windsurf/mcp_config.json`:
+   {
+     "mcpServers": {
+       "sliit_courseweb": {
+         "command": "node",
+         "args": ["<ABSOLUTE_PATH_TO_BUILD_INDEX_JS>"],
+         "env": { "HEADLESS": "true" }
+       }
+     }
+   }
+3. Restart your MCP connection and test by running `get_deadlines`.
+```
+
+### 🟪 Claude Desktop
+
+Add this snippet to your `claude_desktop_config.json` (`~/Library/Application Support/Claude/claude_desktop_config.json` on macOS or `%APPDATA%\Claude\claude_desktop_config.json` on Windows):
+
+```json
+{
+  "mcpServers": {
+    "sliit_courseweb": {
+      "command": "node",
+      "args": ["/ABSOLUTE/PATH/TO/mcp-sliit-courseweb/build/index.js"],
+      "env": {
+        "SLIIT_USERNAME": "ITxxxxxxxx",
+        "SLIIT_PASSWORD": "your_password",
+        "HEADLESS": "true"
+      }
+    }
+  }
+}
 ```
 
 ---
 
-### Manual Configurations by Agent
+## 🔐 Login Methods
 
-<details open>
-<summary><b>1. Claude Code CLI (Recommended)</b></summary>
+Courseweb is protected by SLIIT's Microsoft Office 365 Single Sign-On (SSO) and Multi-Factor Authentication (MFA). This MCP server supports two seamless login strategies:
 
-Add the MCP server in one command using the Claude Code CLI:
+### Method 1: Interactive Browser Login (Recommended for Local Machines)
 
-```bash
-claude mcp add sliit_courseweb node /ABSOLUTE_PATH_TO/courseweb_automation/build/index.js -e SLIIT_USERNAME="itXXXXXX" -e SLIIT_PASSWORD="yourPassword" -e HEADLESS="true"
-```
-Or simply tell `claude`:
-```text
-Run `claude mcp add sliit_courseweb ...` using my current courseweb credentials and build/index.js.
-```
-</details>
+Ideal for macOS, Windows, or Linux with a desktop GUI:
 
-<details>
-<summary><b>2. Google Antigravity</b></summary>
-
-In your Antigravity agent settings or workspace `.gemini/antigravity/mcp/sliit_courseweb.json`:
-
-```json
-{
-  "name": "sliit_courseweb",
-  "command": "node",
-  "args": ["/ABSOLUTE_PATH_TO/courseweb_automation/build/index.js"],
-  "env": {
-    "SLIIT_USERNAME": "your_it_number",
-    "SLIIT_PASSWORD": "your_password",
-    "HEADLESS": "true"
-  }
-}
-```
-</details>
-
-<details>
-<summary><b>3. Cursor IDE</b></summary>
-
-Add to `~/.cursor/mcp.json` or your project `.cursor/mcp.json`:
-
-```json
-{
-  "mcpServers": {
-    "sliit_courseweb": {
-      "command": "node",
-      "args": ["/ABSOLUTE_PATH_TO/courseweb_automation/build/index.js"],
-      "env": {
-        "SLIIT_USERNAME": "your_it_number",
-        "SLIIT_PASSWORD": "your_password",
-        "HEADLESS": "true"
-      }
-    }
-  }
-}
-```
-</details>
-
-<details>
-<summary><b>4. Windsurf / Codeium</b></summary>
-
-Add to `~/.codeium/windsurf/mcp_config.json`:
-
-```json
-{
-  "mcpServers": {
-    "sliit_courseweb": {
-      "command": "node",
-      "args": ["/ABSOLUTE_PATH_TO/courseweb_automation/build/index.js"],
-      "env": {
-        "SLIIT_USERNAME": "your_it_number",
-        "SLIIT_PASSWORD": "your_password",
-        "HEADLESS": "true"
-      }
-    }
-  }
-}
-```
-</details>
-
-<details>
-<summary><b>5. Claude Desktop App</b></summary>
-
-Add to your macOS `~/Library/Application Support/Claude/claude_desktop_config.json` or Windows `%APPDATA%\Claude\claude_desktop_config.json`:
-
-```json
-{
-  "mcpServers": {
-    "sliit_courseweb": {
-      "command": "node",
-      "args": ["/ABSOLUTE_PATH_TO/courseweb_automation/build/index.js"],
-      "env": {
-        "SLIIT_USERNAME": "your_it_number",
-        "SLIIT_PASSWORD": "your_password",
-        "HEADLESS": "true"
-      }
-    }
-  }
-}
-```
-</details>
-
----
-
-## 🔐 Authentication Methods
-
-SLIIT Courseweb uses **Microsoft 365 single sign-on (SSO)** with Multi-Factor Authentication (MFA). We provide two frictionless methods to authenticate:
-
-### Method A: Interactive MFA Login (Local Machines with GUI)
-If you are developing on a laptop or desktop with a screen:
-1. Run this terminal command:
-   ```bash
-   node -e "import('./build/courseweb.js').then(m => new m.CoursewebClient().interactiveLogin().then(console.log));"
+1. In your agent chat, run the `interactive_login` tool:
    ```
-2. A real browser window will appear showing the Microsoft 365 login screen.
-3. Complete your standard login and approve the MFA prompt (Microsoft Authenticator / SMS).
-4. The authenticated session cookie (`MoodleSession`) is automatically saved to `.env`. You won't have to log in again until the session expires!
+   "Run interactive_login to sign into Courseweb."
+   ```
+2. A Playwright Chromium browser window pops up, navigates to `courseweb.sliit.lk`, and automatically fills your email and password.
+3. Complete the Microsoft Authenticator 2-digit number match on your phone.
+4. Once authenticated, the browser captures your session and securely persists cookies to `storage_state.json`. All future requests run 100% headlessly in the background!
 
----
+### Method 2: Session ID / Cookie Injection (Headless Cloud & VMs)
 
-### Method B: Headless DevTools One-Liner (Cloud VM / GitHub Codespaces / Servers)
-If you are running in a headless environment without a browser:
+Ideal for headless Linux servers, GitHub Codespaces, or remote VMs where opening a browser window is not possible:
 
-<p align="center">
-  <img src="assets/demo-devtools-cookie.jpg" alt="Copy MoodleSession Cookie from Browser DevTools" width="85%" style="border-radius: 8px; border: 1px solid #e4e4e7;">
-</p>
+<div align="center">
+  <img src="assets/demo-devtools-cookie.jpg" alt="DevTools MoodleSession Cookie Extraction" width="700" style="border-radius: 8px; border: 1px solid #e4e4e7;" />
+</div>
 
-1. Open [courseweb.sliit.lk](https://courseweb.sliit.lk) in Chrome/Safari/Edge on your personal computer and log in normally.
-2. Press `F12` (or `Cmd + Option + I`) to open **Developer Tools** and switch to the **Console** tab.
-3. Paste and run this one-line command:
+1. Open your laptop browser, navigate to [courseweb.sliit.lk](https://courseweb.sliit.lk), and log in.
+2. Press `F12` (or `Cmd + Option + I`) to open **Developer Tools** → **Console**.
+3. Paste this one-liner and press Enter to copy your active session cookie:
    ```javascript
    copy(document.cookie.split('; ').find(row => row.startsWith('MoodleSession=')).split('=')[1])
    ```
-4. The session token is now copied to your clipboard.
-5. In your AI agent (Claude / Cursor / Antigravity), simply ask:
-   ```text
-   Please authenticate to SLIIT courseweb using this session cookie: <PASTE_TOKEN>
+4. Tell your AI assistant:
    ```
-   *(Your agent will invoke the built-in `set_session_cookie` tool and immediately connect!)*
+   "Use set_session_cookie with this value: <PASTE_COOKIE_HERE>"
+   ```
+5. You're immediately logged in without any browser UI!
 
 ---
 
-## 🔥 Real Superpower Proofs
+## 🛠️ Complete MCP Tool Reference
 
-### 1. Instant Marks & Average Calculation from 100+ Page PDFs
-No more searching through massive tabular marksheets. The agent uses `scrape_page` and `download_file` to parse the document and extract your exact grades.
+This server provides **9 specialized tools** exposed via the Model Context Protocol:
 
-<p align="center">
-  <img src="assets/demo-marksheet.jpg" alt="Marksheet Extraction Proof" width="90%" style="border-radius: 8px; border: 1px solid #e4e4e7;">
-</p>
-
-**Sample Prompt:**
-> *"Check my IE2012 mid-exam marks from the marksheet PDF on Courseweb and compute the class average if possible."*
-
----
-
-### 2. Smart Delta Sync for Lecture Slides (Zero Duplicates)
-The MCP calculates MD5 checksums for every lecture slide, tutorial PDF, and code sample. It only downloads new or modified files, keeping your local notes perfectly up-to-date.
-
-<p align="center">
-  <img src="assets/demo-updates.jpg" alt="Delta Sync Proof" width="90%" style="border-radius: 8px; border: 1px solid #e4e4e7;">
-</p>
-
-**Sample Prompt:**
-> *"Sync all slides and lab guides for IT2040 into my local /Lectures folder."*
+| Tool | Purpose | Key Parameters | Example Prompt |
+| :--- | :--- | :--- | :--- |
+| `list_modules` | Lists all enrolled modules, codes, and Moodle course IDs | *None* | *"What modules am I registered for this semester?"* |
+| `get_deadlines` | Scrapes upcoming assignment submission deadlines and calendar events | *None* | *"What assignments are due in the next 7 days?"* |
+| `get_announcements` | Fetches course notices, exam schedules, and lecturer broadcasts | `courseId` *(optional)* | *"Did the Distributed Systems lecturer post any exam notices?"* |
+| `check_module_updates` | Detects newly posted files or modified sections in a course | `courseId` | *"Check if any new tutorial answers were uploaded to Software Architecture."* |
+| `sync_module` | Delta-downloads all slides, lab sheets, and materials (MD5 hashed) | `courseId`, `outputDir` | *"Download all slides from Computer Networks to ./slides/networks."* |
+| `download_file` | Downloads a specific file or syllabus document directly | `url`, `outputPath` | *"Download the lecture 4 PDF from this URL."* |
+| `check_assignment_status` | Inspects submission status, grading grade, and marker comments | `assignmentId` | *"Did my SE4020 assignment 1 get graded yet?"* |
+| `scrape_page` | Scrapes any Courseweb URL into clean, LLM-ready markdown | `url` | *"Scrape the main page for module 14202 and summarize the syllabus."* |
+| `interactive_login` | Launches Playwright browser for Microsoft SSO & MFA approval | *None* | *"Run interactive login."* |
+| `set_session_cookie` | Manually injects `MoodleSession` cookie for headless environments | `cookie` | *"Set Moodle session cookie to 9a8b7c6d5e4f..."* |
 
 ---
 
-### 3. Assignment Deadlines & Submission Verification
-Check your academic calendar and confirm your submission status before the deadline closes.
+## 🌟 Student Superpowers
 
-**Sample Prompt:**
-> *"What assignments are due in the next 7 days, and have I submitted my Software Architecture assignment?"*
+### Superpower 1: 103-Page Exam Marksheet PDF Search
+Instead of waiting 5 minutes for a 20MB PDF to render in your browser and searching line by line, let your agent download and parse it:
 
----
+<div align="center">
+  <img src="assets/demo-marksheet.jpg" alt="Extracting marks from 103-page PDF" width="700" style="border-radius: 8px; border: 1px solid #e4e4e7;" />
+</div>
 
-## 🧰 MCP Tools Reference
+> **Prompt:** *"Check Courseweb for the Software Engineering Midterm marks PDF. Download it and find the score for IT21000000. Give me my class percentile and average."*
 
-The server exposes 9 specialized MCP tools to your AI assistant:
+### Superpower 2: Intelligent Delta File Syncing
+Never download duplicate files again. `sync_module` computes MD5 checksums for every file, creating local mirrors and downloading only fresh slides:
 
-| Tool Name | Parameters | Description |
-| :--- | :--- | :--- |
-| `list_modules` | *(none)* | Returns all enrolled modules with IDs and names. |
-| `get_announcements` | `moduleId` *(optional)* | Scrapes recent notices, announcements, and exam schedules. |
-| `check_module_updates` | `moduleId` | Checks for new lecture notes, slides, and files since last check. |
-| `get_deadlines` | *(none)* | Scrapes upcoming assignment deadlines from the Moodle calendar. |
-| `scrape_page` | `url` | Deep-scrapes any Moodle page URL into structured markdown for the agent. |
-| `download_file` | `fileUrl`, `destinationPath` | Downloads a specific course asset or PDF directly to disk. |
-| `sync_module` | `moduleId`, `targetDirectory` | Bulk downloads all lecture slides and materials with MD5 deduplication. |
-| `check_assignment_status`| `assignmentId` | Checks submission status, grading feedback, and due dates. |
-| `set_session_cookie` | `cookie` | Injects an active `MoodleSession` token without browser automation. |
-| `interactive_login` | *(none)* | Launches a GUI browser window for Microsoft 365 MFA authentication. |
+<div align="center">
+  <img src="assets/demo-updates.jpg" alt="Delta lecture slide sync" width="700" style="border-radius: 8px; border: 1px solid #e4e4e7;" />
+</div>
+
+> **Prompt:** *"Sync all lecture materials for Machine Learning to ./ML_Lectures. Only download newly uploaded slides."*
+
+### Superpower 3: Autonomous Weekly Academic Standup
+> **Prompt:** *"List all assignments due across all my modules this Sunday. Generate a priority to-do list with time estimates."*
 
 ---
 
-## 🌍 Port to Your University Moodle
+## ⚙️ Manual Build & Development
 
-> **Are you a student at University of Moratuwa (UoM), UCSC, IIT, Peradeniya, NSBM, or an overseas university using Moodle?**
-
-Because Moodle powers over 80% of university learning platforms worldwide, the architecture of this MCP server is **100% adaptable** to your campus portal:
-1. Fork this repository: `git clone https://github.com/kesaruhasun/courseweb_automation.git`
-2. Update the base URL in `src/courseweb.ts` (e.g., `https://lms.uom.lk` or `https://moodle.iit.ac.lk`).
-3. Adjust the SSO login selectors to match your university's authentication portal.
-4. Send a pull request or publish your campus edition!
-
-If you want help adapting this for your university, open an [Issue](https://github.com/kesaruhasun/courseweb_automation/issues) or reach out at [kesaru.me](https://kesaru.me).
-
----
-
-## 🛠️ Local Development & Build
+If you prefer building and running from source manually:
 
 ```bash
-# Clone the repository
-git clone https://github.com/kesaruhasun/courseweb_automation.git
-cd courseweb_automation
+# 1. Clone repository
+git clone https://github.com/kesaruhasun/mcp-sliit-courseweb.git
+cd mcp-sliit-courseweb
 
-# Install dependencies
+# 2. Install dependencies
 npm install
 
-# Compile TypeScript
+# 3. Compile TypeScript
 npm run build
 
-# Run in watch mode for development
-npm run dev
+# 4. Configure environment
+cp .env.example .env
+# Edit .env with your SLIIT credentials:
+# SLIIT_USERNAME=ITxxxxxxxx
+# SLIIT_PASSWORD=your_password
+# HEADLESS=true
+
+# 5. Start MCP Server (stdio mode)
+node build/index.js
 ```
 
 ---
 
-## ⚖️ Disclaimer & Ethical Usage
+## 🌐 Live Landing Page & Multilingual Support
 
-This project is an open-source productivity tool created for **personal educational purposes only**. It is not officially affiliated with or endorsed by the Sri Lanka Institute of Information Technology (SLIIT).
+Check out the interactive web portal at **[https://sliitcoursewebmcp.kesaru.me](https://sliitcoursewebmcp.kesaru.me)**.
 
-- **Rate Limiting**: Automated requests should be executed at sensible intervals to prevent unnecessary load on university servers.
-- **Privacy & Security**: Credentials and session cookies are stored exclusively on your local machine (`.env`) and are never transmitted to third-party servers.
+* 🇱🇰 **Spoken Sinhala (සිංහල)**: Explains MCP and Courseweb automation in casual student terms with Apple SF-style Sinhala typography (`Gemunu Libre` / `Sinhala MN`).
+* 🇱🇰 **Spoken Tamil (தமிழ்)**: Native Sri Lankan Tamil explanations for students across all campuses.
+* ⚡ **Interactive Prompt Builder**: Instant copy-paste blocks for Claude, Antigravity, Cursor, and Windsurf.
+* 🎥 **Live Video Player**: Stream the 60fps launch showcase directly in your browser.
 
 ---
 
-## 👨‍💻 Built with ❤️ by Kesaru Hasun
+## 🛡️ Fair Use & Institutional Disclaimer
 
-<p align="left">
-  <img src="assets/kesaru-pig-logo-sm.jpg" width="40" height="40" align="left" style="margin-right: 12px; border-radius: 8px;">
-  <b>Kesaru Hasun</b><br>
-  Website: <a href="https://kesaru.me">kesaru.me</a> • GitHub: <a href="https://github.com/kesaruhasun">@kesaruhasun</a> • Showcase: <a href="https://sliitcoursewebmcp.kesaru.me">sliitcoursewebmcp.kesaru.me</a>
-</p>
+* This project is an independent open-source utility developed for personal educational efficiency and is **not officially affiliated with or endorsed by SLIIT**.
+* The server uses polite request throttling and intelligent MD5 caching to avoid generating unnecessary server load on campus infrastructure.
+* Users are responsible for keeping their institutional credentials secure and complying with campus IT acceptable use policies.
 
-<br>
+---
 
-**Distributed under the MIT License.** If you find this project helpful, please give it a ⭐ on [GitHub](https://github.com/kesaruhasun/courseweb_automation)!
+## 👨‍💻 Author & Contributions
+
+Built with ❤️ by **[Kesaru Hasun](https://kesaru.me)**.
+
+* 🌐 Portfolio & Blog: [kesaru.me](https://kesaru.me)
+* 🐙 GitHub: [@kesaruhasun](https://github.com/kesaruhasun)
+* 💬 Questions or bug reports? Open an [Issue](https://github.com/kesaruhasun/mcp-sliit-courseweb/issues) or submit a Pull Request!
+
+---
+
+<div align="center">
+<sub>Powered by Model Context Protocol • Made for SLIIT Students</sub>
+</div>

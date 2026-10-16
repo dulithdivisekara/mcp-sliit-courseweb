@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>SLIIT Courseweb MCP Server — Bridge Moodle into Cursor, Claude & AI Agents</title>
+  <meta name="description" content="Model Context Protocol (MCP) server for SLIIT Courseweb. Sync slides, track assignment deadlines, and inspect grades directly from Cursor, Claude Code, and Antigravity.">
+  <meta name="keywords" content="SLIIT, Courseweb, MCP, Model Context Protocol, Claude Desktop, Cursor, Antigravity, Moodle Automation, Sri Lanka">
+
+  <!-- Favicon using Kesaru's Flying Pig Logo -->
+  <link rel="icon" href="assets/kesaru-pig-logo-sm.jpg" type="image/jpeg">
+
+  <!-- Canonical & Alternate Multilingual Links -->
+  <link rel="canonical" href="https://sliitcoursewebmcp.kesaru.me/">
+  <link rel="alternate" hreflang="en" href="https://sliitcoursewebmcp.kesaru.me/">
+  <link rel="alternate" hreflang="si" href="https://sliitcoursewebmcp.kesaru.me/?lang=si">
+  <link rel="alternate" hreflang="ta" href="https://sliitcoursewebmcp.kesaru.me/?lang=ta">
+  <link rel="alternate" hreflang="x-default" href="https://sliitcoursewebmcp.kesaru.me/">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:site_name" content="SLIIT Courseweb MCP Server">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sliitcoursewebmcp.kesaru.me/">
+  <meta property="og:title" content="SLIIT Courseweb MCP Server — Your LMS inside Claude, Cursor & AI Agents">
+  <meta property="og:description" content="No more slow Courseweb loading. Extract marks from 103-page PDFs, sync lecture materials, and track deadlines in one prompt.">
+  <meta property="og:image" content="https://sliitcoursewebmcp.kesaru.me/assets/courseweb-launch-poster.jpg">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1080">
+  <meta property="og:image:alt" content="SLIIT Courseweb MCP Server — AI Agent Integration Interface">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="si_LK">
+  <meta property="og:locale:alternate" content="ta_LK">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@kesaruhasun">
+  <meta name="twitter:creator" content="@kesaruhasun">
+  <meta name="twitter:title" content="SLIIT Courseweb MCP Server — Your LMS inside Claude, Cursor & AI Agents">
+  <meta name="twitter:description" content="Extract exam marks from 103-page PDFs, sync slides, and track assignment deadlines directly in Claude Code, Cursor, and Antigravity.">
+  <meta name="twitter:image" content="https://sliitcoursewebmcp.kesaru.me/assets/courseweb-launch-poster.jpg">
+  <meta name="twitter:image:alt" content="SLIIT Courseweb MCP Server Showcase">
+
+  <!-- Search Engine Verification & Directives -->
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="author" content="Kesaru Hasun">
+  <meta name="theme-color" content="#18181b">
+
+  <!-- Structured Data: JSON-LD Graph for SoftwareApplication, FAQPage, HowTo, VideoObject -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://sliitcoursewebmcp.kesaru.me/#website",
+        "url": "https://sliitcoursewebmcp.kesaru.me/",
+        "name": "SLIIT Courseweb MCP Server",
+        "description": "Bridge SLIIT Courseweb Moodle into Claude Code, Cursor, Antigravity & AI Agents.",
+        "inLanguage": ["en", "si", "ta"],
+        "author": {
+          "@type": "Person",
+          "name": "Kesaru Hasun",
+          "url": "https://kesaru.me"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://sliitcoursewebmcp.kesaru.me/#software",
+        "name": "SLIIT Courseweb MCP Server",
+        "operatingSystem": "macOS, Linux, Windows",
+        "applicationCategory": "EducationalApplication",
+        "applicationSubCategory": "DeveloperApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Model Context Protocol (MCP) server that empowers AI assistants to interact with SLIIT Courseweb (Moodle), sync lecture slides, extract exam results, and monitor deadlines.",
+        "softwareRequirements": "Node.js >= 18, Claude Desktop / Cursor / Antigravity / Windsurf",
+        "codeRepository": "https://github.com/kesaruhasun/mcp-sliit-courseweb",
+        "author": {
+          "@type": "Person",
+          "name": "Kesaru Hasun",
+          "url": "https://kesaru.me"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://sliitcoursewebmcp.kesaru.me/#howto",
+        "name": "How to Install SLIIT Courseweb MCP Server in AI Agents",
+        "description": "Self-configure the SLIIT Courseweb MCP in Claude Code, Cursor, Antigravity, or Windsurf using a single prompt.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "name": "Copy the Universal Install Prompt",
+            "text": "Select your agent (Claude Code, Antigravity, Cursor, Windsurf) and copy the 1-prompt configuration directive.",
+            "url": "https://sliitcoursewebmcp.kesaru.me/#agent-installer"
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Run in your AI Assistant",
+            "text": "Paste the prompt into your AI agent. The agent clones the repository, compiles the TypeScript build, and updates its local MCP settings.",
+            "url": "https://sliitcoursewebmcp.kesaru.me/#agent-installer"
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Authenticate with Courseweb",
+            "text": "Run interactive_login to complete Microsoft MFA in an automated browser window, or inject MoodleSession cookie via set_session_cookie for remote headless servers.",
+            "url": "https://sliitcoursewebmcp.kesaru.me/#auth"
+          }
+        ]
+      },
+      {
+        "@type": "VideoObject",
+        "@id": "https://sliitcoursewebmcp.kesaru.me/#video",
+        "name": "SLIIT Courseweb MCP Server Launch Showcase",
+        "description": "Watch Claude Code autonomously parse a 103-page PDF marksheet, extract student marks, and perform delta slide syncs.",
+        "thumbnailUrl": "https://sliitcoursewebmcp.kesaru.me/assets/courseweb-launch-poster.jpg",
+        "uploadDate": "2026-10-16T20:00:00+05:30",
+        "duration": "PT20S",
+        "contentUrl": "https://sliitcoursewebmcp.kesaru.me/assets/courseweb-launch-trailer.mp4",
+        "embedUrl": "https://sliitcoursewebmcp.kesaru.me/#video-demo"
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://sliitcoursewebmcp.kesaru.me/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the SLIIT Courseweb MCP Server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "It is an open-source Model Context Protocol (MCP) server that connects your SLIIT Courseweb account directly to AI coding assistants like Claude Code, Cursor, Antigravity, and Windsurf, enabling automated file downloads, deadline tracking, and document search without web browsing delays."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does Interactive Login handle Microsoft Multi-Factor Authentication (MFA)?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "When you execute interactive_login, the server launches an automated Playwright Chromium browser that pre-fills your SLIIT credentials and waits for you to approve the Microsoft Authenticator notification. Session cookies are securely persisted locally in storage_state.json."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I log in on a remote headless VM without a GUI?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Log into Courseweb on your laptop, open Browser DevTools (F12) -> Application/Cookies, copy the MoodleSession cookie value, and tell your agent to run set_session_cookie with the copied value."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can it search for my marks in a 100+ page exam marksheet PDF?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. The AI assistant can download the exam results PDF from Courseweb and scan through hundreds of pages in seconds to find your specific IT number, midterm marks, lab assessment scores, and grade breakdown."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Google Fonts: Geist, Gemunu Libre (Apple SF-style Sinhala), Anek Tamil -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Geist:wght@400;500;600;700&family=Gemunu+Libre:wght@400;500;600;700;800&family=Noto+Sans+Sinhala:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Text', 'Geist', 'Sinhala MN', 'Sinhala Sangam MN', 'Gemunu Libre', 'sans-serif'],
+            sinhala: ['"Sinhala MN"', '"Sinhala Sangam MN"', '"Gemunu Libre"', '"Noto Sans Sinhala"', 'sans-serif'],
+            tamil: ['".SF Tamil"', '"Tamil Sangam MN"', '"Tamil MN"', '"Anek Tamil"', 'sans-serif'],
+            mono: ['Geist Mono', 'SF Mono', 'Menlo', 'monospace'],
+          },
+          colors: {
+            page: '#fafafa',
+            surface: '#ffffff',
+            ink: '#18181b',
+            muted: '#71717a',
+            hairline: '#e4e4e7',
+            accent: '#16a34a',
+            claude: '#D97706',
+            antigravity: '#3B82F6',
+            cursor: '#000000',
+            windsurf: '#0D9488',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Prevent horizontal overflow on mobile */
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    /* Subtle 3% diagonal hairline hatch for section dividers */
+    .bg-hatch {
+      background-image: repeating-linear-gradient(
+        -45deg,
+        rgba(0, 0, 0, 0.02),
+        rgba(0, 0, 0, 0.02) 1px,
+        transparent 1px,
+        transparent 8px
+      );
+    }
+    /* Emil Kowalski Button & Transition Physics */
+    .btn-spring {
+      transition: transform 140ms cubic-bezier(0.16, 1, 0.3, 1), background-color 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
+    }
+    .btn-spring:active {
+      transform: scale(0.97);
+    }
+    /* Apple Sinhala and Tamil Typography Optimization */
+    [lang="si"], .font-sinhala, body[data-active-lang="si"] h1, body[data-active-lang="si"] h2, body[data-active-lang="si"] p {
+      font-family: -apple-system, BlinkMacSystemFont, "Sinhala MN", "Sinhala Sangam MN", "Gemunu Libre", "Noto Sans Sinhala", sans-serif !important;
+      line-height: 1.65 !important;
+    }
+    [lang="ta"], .font-tamil, body[data-active-lang="ta"] h1, body[data-active-lang="ta"] h2, body[data-active-lang="ta"] p {
+      font-family: -apple-system, BlinkMacSystemFont, ".SF Tamil", "Tamil Sangam MN", "Tamil MN", "Anek Tamil", sans-serif !important;
+      line-height: 1.65 !important;
+    }
+    /* Language visibility utility */
+    body:not([data-active-lang="en"]) .lang-en { display: none !important; }
+    body:not([data-active-lang="si"]) .lang-si { display: none !important; }
+    body:not([data-active-lang="ta"]) .lang-ta { display: none !important; }
+
+    /* macOS window frame styling */
+    .mac-window {
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.07);
+    }
+
+    /* Hide scrollbars for clean horizontal tab lists on mobile */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body data-active-lang="en" class="bg-page text-ink antialiased selection:bg-zinc-200 selection:text-ink">
+
+  <!-- ========================================================================= -->
+  <!-- 01. RESPONSIVE TOP BAR (NO OVERLAPPING BUTTONS)                           -->
+  <!-- ========================================================================= -->
+  <header class="sticky top-0 z-50 bg-page/90 backdrop-blur-md border-b border-hairline">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-3">
+      <!-- Left: Pig Brand Logo + Wordmark -->
+      <a href="https://kesaru.me" target="_blank" class="flex items-center gap-2 group shrink-0">
+        <div class="w-7 h-7 rounded-lg overflow-hidden border border-hairline bg-white shrink-0 group-hover:scale-105 transition-transform">
+          <img src="assets/kesaru-pig-logo-sm.jpg" alt="Kesaru Flying Pig Logo" class="w-full h-full object-cover">
+        </div>
+        <span class="font-semibold text-xs sm:text-sm tracking-tight text-ink group-hover:text-zinc-600 transition-colors">sliit-courseweb-mcp</span>
+        <span class="hidden sm:inline-block font-mono text-[10px] text-muted border border-hairline px-1.5 py-0.5 rounded bg-white">v1.0.0</span>
+      </a>
+
+      <!-- Center-Right: Navigation Links (Desktop) -->
+      <nav class="hidden md:flex items-center gap-5 text-[13px] font-medium text-muted">
+        <a href="#install" class="hover:text-ink transition-colors">
+          <span class="lang-en">Install Prompt</span>
+          <span class="lang-si">Install කරමු</span>
+          <span class="lang-ta">Install செய்க</span>
+        </a>
+        <a href="#features" class="hover:text-ink transition-colors">
+          <span class="lang-en">Features</span>
+          <span class="lang-si">Features</span>
+          <span class="lang-ta">அம்சங்கள்</span>
+        </a>
+        <a href="#demo" class="hover:text-ink transition-colors">
+          <span class="lang-en">Live Demo</span>
+          <span class="lang-si">Demo වීඩියෝව</span>
+          <span class="lang-ta">Demo வீடியோ</span>
+        </a>
+        <a href="#auth" class="hover:text-ink transition-colors">
+          <span class="lang-en">Login Methods</span>
+          <span class="lang-si">ලොග් වෙන ක්‍රම</span>
+          <span class="lang-ta">உள்நுழைவு முறை</span>
+        </a>
+        <a href="https://kesaru.me/about" target="_blank" class="hover:text-ink transition-colors flex items-center gap-0.5">
+          <span>About</span>
+          <span class="text-[10px] text-muted">↗</span>
+        </a>
+      </nav>
+
+      <!-- Right: Language Toggle & GitHub Star Pill (Optimized for all viewports) -->
+      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+        <!-- Language Switcher Pills -->
+        <div class="flex items-center p-0.5 rounded-lg border border-hairline bg-white text-xs font-mono">
+          <button onclick="setLanguage('en')" id="btn-lang-en" class="px-2 py-0.5 sm:py-1 rounded font-medium transition-all bg-ink text-white">EN</button>
+          <button onclick="setLanguage('si')" id="btn-lang-si" class="px-2 py-0.5 sm:py-1 rounded font-medium transition-all text-muted hover:text-ink">සිං</button>
+          <button onclick="setLanguage('ta')" id="btn-lang-ta" class="px-2 py-0.5 sm:py-1 rounded font-medium transition-all text-muted hover:text-ink">தமி</button>
+        </div>
+
+        <!-- Star on GitHub Button (Compact icon on small mobile, full text on sm+) -->
+        <a href="https://github.com/kesaruhasun/mcp-sliit-courseweb" target="_blank" rel="noopener noreferrer" class="btn-spring inline-flex items-center gap-1.5 bg-ink text-white text-xs font-medium px-2.5 sm:px-3.5 py-1.5 rounded-full hover:bg-zinc-800">
+          <svg class="w-3.5 h-3.5 fill-current text-amber-400 shrink-0" viewBox="0 0 24 24">
+            <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.784 1.399 8.165-7.333-3.856-7.333 3.856 1.399-8.165-5.934-5.784 8.2-1.192zm0 5.702l-2.232 4.523-4.991.725 3.612 3.521-.852 4.97 4.463-2.347 4.463 2.347-.852-4.97 3.612-3.521-4.991-.725z"/>
+          </svg>
+          <span class="hidden sm:inline">Star</span>
+          <span class="hidden sm:inline text-zinc-400 font-mono text-[10px] border-l border-zinc-700 pl-1.5">GitHub</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- 02. HERO SECTION                                                          -->
+  <!-- ========================================================================= -->
+  <section class="pt-14 sm:pt-20 pb-10 px-4 sm:px-6 max-w-4xl mx-auto text-center">
+    <!-- Announcement Badge -->
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-hairline bg-white text-xs font-mono text-muted mb-6">
+      <span class="w-1.5 h-1.5 rounded-full bg-accent animate-ping"></span>
+      <span class="lang-en">Open Source Model Context Protocol for SLIIT Courseweb</span>
+      <span class="lang-si">SLIIT Courseweb සඳහා වන නිල නොවන AI MCP Server එක</span>
+      <span class="lang-ta">SLIIT Courseweb க்கான திறந்த மூல AI MCP Server</span>
+      <span class="text-zinc-300">|</span>
+      <span class="text-ink font-semibold">v1.0.0</span>
+    </div>
+
+    <!-- Two-tone Headline -->
+    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-ink leading-[1.18] mb-5">
+      <span class="lang-en">No more clicking through Courseweb. <br><span class="text-muted">Every slide and deadline in one prompt.</span></span>
+      <span class="lang-si">Courseweb එකට AI බලය දෙමු. <br><span class="text-muted">Slides, Deadlines සහ Marks — ඔක්කොම එක Prompt එකෙන්.</span></span>
+      <span class="lang-ta">Courseweb-ஐ உங்கள் AI-யோடு இணையுங்கள். <br><span class="text-muted">Slides, Deadlines மற்றும் Marks — அனைத்தும் ஒரே Prompt-ல்.</span></span>
+    </h1>
+
+    <!-- Subcopy -->
+    <p class="text-sm sm:text-base lg:text-lg text-muted max-w-2xl mx-auto mb-8 font-normal leading-relaxed">
+      <span class="lang-en">Connect Claude Code, Antigravity, and Cursor directly to your SLIIT Moodle portal. Sync all module materials, search 100+ page exam marks, and track deadlines straight from your IDE.</span>
+      <span class="lang-si">Claude Code, Antigravity, හරි Cursor හරි කෙලින්ම SLIIT Moodle එකට connect කරන්න. හැම සතියෙම තියෙන lecture notes, lab sheets, deadlines සහ පිටු 100ක exam marks තප්පරෙන් ඔයාගේ code editor එකටම ගන්න.</span>
+      <span class="lang-ta">Claude Code, Antigravity, மற்றும் Cursor-ஐ நேரடியாக SLIIT Moodle-உடன் இணையுங்கள். Lecture slides, lab sheets, deadlines மற்றும் 100 பக்க பரீட்சை பெறுபேறுகளை உங்கள் IDE-க்குள்ளேயே நொடிகளில் பெறுங்கள்.</span>
+    </p>
+
+    <!-- CTAs: Copy Prompt & Explore Features -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-6">
+      <a href="#install" class="btn-spring w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm px-6 py-3 rounded-xl shadow-lg shadow-emerald-950/15">
+        <span>⚡ Install in 1 Prompt ↓</span>
+      </a>
+      <a href="#features" class="btn-spring w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white text-ink border border-hairline font-medium text-sm px-5 py-3 rounded-xl hover:bg-zinc-50">
+        <span class="lang-en">Explore Features →</span>
+        <span class="lang-si">විශේෂාංග බලන්න →</span>
+        <span class="lang-ta">அம்சங்களை பார்க்க →</span>
+      </a>
+    </div>
+
+    <!-- Credit Row -->
+    <div class="flex items-center justify-center gap-2 text-xs font-mono text-muted">
+      <span>Built with ❤️ by</span>
+      <a href="https://kesaru.me" target="_blank" class="text-ink font-semibold hover:underline">Kesaru Hasun</a>
+      <span>& open source contributors</span>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 03. BLOCK 2: AGENT INSTALLATION HUB (MOVED TO TOP AS PRIMARY ACTION)      -->
+  <!-- ========================================================================= -->
+  <section id="install" class="py-12 px-4 sm:px-6 max-w-5xl mx-auto scroll-mt-14">
+    <div class="border border-hairline rounded-2xl bg-surface p-6 sm:p-8 mac-window">
+      <div class="text-center max-w-2xl mx-auto mb-8">
+        <div class="text-[11px] font-mono text-emerald-600 uppercase tracking-wider font-semibold mb-1.5">⚡ FASTEST SETUP</div>
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink mb-2">
+          <span class="lang-en">Copy one prompt. Your agent configures itself.</span>
+          <span class="lang-si">Prompt එක copy කරන්න. Agent තනියම setup වෙයි.</span>
+          <span class="lang-ta">ஒரு prompt-ஐ copy செய்யுங்கள். Agent தானாகவே நிறுவப்படும்.</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-muted">
+          Select your tool below, copy the prompt, and paste it into your agent chat.
+        </p>
+      </div>
+
+      <!-- Agent Switcher Tabs (Horizontal scroll on mobile, flex-wrap on desktop) -->
+      <div class="flex items-center justify-start sm:justify-center gap-2 mb-6 font-mono text-xs overflow-x-auto pb-2 no-scrollbar">
+        <!-- 1. Claude Code (Default) -->
+        <button onclick="setAgentTab('claude')" id="tab-claude" class="btn-spring shrink-0 px-3.5 py-2 rounded-lg border border-ink bg-ink text-white font-semibold transition-all flex items-center gap-2 shadow-xs">
+          <svg class="w-4 h-4 fill-current text-amber-500" viewBox="0 0 24 24"><path d="M13.5 2h-3v7.2L5.4 4.1 3.3 6.2l5.1 5.1H1.2v3h7.2l-5.1 5.1 2.1 2.1 5.1-5.1V22h3v-7.2l5.1 5.1 2.1-2.1-5.1-5.1h7.2v-3h-7.2l5.1-5.1-2.1-2.1-5.1 5.1V2z"/></svg>
+          <span>Claude Code</span>
+        </button>
+
+        <!-- 2. Google Antigravity (Second) -->
+        <button onclick="setAgentTab('antigravity')" id="tab-antigravity" class="btn-spring shrink-0 px-3.5 py-2 rounded-lg border border-hairline bg-page text-muted hover:text-ink font-semibold transition-all flex items-center gap-2">
+          <svg class="w-4 h-4 fill-current text-blue-500" viewBox="0 0 24 24"><path d="M12 2C12 7.5 7.5 12 2 12C7.5 12 12 16.5 12 22C12 16.5 16.5 12 22 12C16.5 12 12 7.5 12 2Z"/></svg>
+          <span>Antigravity</span>
+        </button>
+
+        <!-- 3. Cursor Agent -->
+        <button onclick="setAgentTab('cursor')" id="tab-cursor" class="btn-spring shrink-0 px-3.5 py-2 rounded-lg border border-hairline bg-page text-muted hover:text-ink font-semibold transition-all flex items-center gap-2">
+          <svg class="w-4 h-4 fill-current text-zinc-900" viewBox="0 0 24 24"><path d="M4 4l16 8-7 2-2 7L4 4z"/></svg>
+          <span>Cursor</span>
+        </button>
+
+        <!-- 4. Windsurf -->
+        <button onclick="setAgentTab('windsurf')" id="tab-windsurf" class="btn-spring shrink-0 px-3.5 py-2 rounded-lg border border-hairline bg-page text-muted hover:text-ink font-semibold transition-all flex items-center gap-2">
+          <svg class="w-4 h-4 fill-current text-teal-600" viewBox="0 0 24 24"><path d="M3 13c3.5 0 5-6 9-6s5.5 6 9 6-3.5 6-9 6-5.5-6-9-6z"/></svg>
+          <span>Windsurf</span>
+        </button>
+
+        <!-- 5. Claude Desktop -->
+        <button onclick="setAgentTab('claudedesktop')" id="tab-claudedesktop" class="btn-spring shrink-0 px-3.5 py-2 rounded-lg border border-hairline bg-page text-muted hover:text-ink font-semibold transition-all flex items-center gap-2">
+          <svg class="w-4 h-4 fill-current text-amber-700" viewBox="0 0 24 24"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/></svg>
+          <span>Claude Desktop</span>
+        </button>
+      </div>
+
+      <!-- Prompt Container with Prominent Copy Button -->
+      <div class="relative bg-zinc-950 rounded-xl border border-zinc-800 p-4 sm:p-6 text-zinc-300 font-mono text-xs leading-relaxed overflow-hidden">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 mb-3 border-b border-zinc-800">
+          <div class="flex items-center gap-2 text-[11px]">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span id="active-agent-label" class="text-zinc-400">Target Agent: <strong class="text-white">Claude Code CLI</strong></span>
+          </div>
+
+          <!-- Color-Accented Copy Button -->
+          <button onclick="copyActivePrompt()" id="copy-prompt-btn" class="btn-spring w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white font-sans font-semibold px-4 py-2 rounded-lg text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/50">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/>
+            </svg>
+            <span id="copy-btn-text">Copy Prompt to Clipboard</span>
+          </button>
+        </div>
+
+        <pre id="agent-prompt-display" class="overflow-x-auto whitespace-pre-wrap text-zinc-300 text-[11px] sm:text-xs leading-relaxed max-h-80"></pre>
+
+        <div class="mt-4 pt-3 border-t border-zinc-800/60 text-[11px] text-zinc-500 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <span>💡 Paste this prompt into your agent chat. It will clone, compile, and configure the MCP server automatically.</span>
+          <span class="text-emerald-400 font-semibold shrink-0">✓ No manual file editing</span>
+        </div>
+      </div>
+
+      <!-- Subtle Accordion for Manual Configuration (Replaces clunky segmented radio) -->
+      <details class="mt-6 border-t border-hairline pt-4 text-xs font-mono text-muted group">
+        <summary class="cursor-pointer text-ink hover:text-zinc-600 font-medium flex items-center justify-between select-none">
+          <span>Prefer manual JSON configuration instead?</span>
+          <span class="group-open:rotate-180 transition-transform">↓</span>
+        </summary>
+        <div class="mt-4 space-y-4 pt-2">
+          <!-- Terminal command snippet -->
+          <div class="bg-zinc-950 rounded-lg p-3 text-[11px] border border-zinc-800">
+            <div class="text-zinc-500 mb-1">// Terminal commands:</div>
+            <div class="text-cyan-400 select-all">git clone https://github.com/kesaruhasun/mcp-sliit-courseweb.git && cd mcp-sliit-courseweb && npm install && npm run build</div>
+          </div>
+          <!-- JSON Config block -->
+          <div class="bg-zinc-950 rounded-lg p-3 text-[11px] border border-zinc-800">
+            <div class="text-zinc-500 mb-1">// Raw config entry for active tool:</div>
+            <pre id="manual-json-display" class="text-emerald-400 select-all overflow-x-auto"></pre>
+          </div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 04. TRUST STRIP                                                           -->
+  <!-- ========================================================================= -->
+  <section class="border-y border-hairline bg-surface py-5">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="text-[11px] font-mono tracking-wider text-muted uppercase">
+        <span class="lang-en">COMPATIBLE CODING AGENTS</span>
+        <span class="lang-si">සහය දක්වන AI AGENTS</span>
+        <span class="lang-ta">ஆதரிக்கும் AI AGENTS</span>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-8 text-xs sm:text-sm font-semibold text-zinc-700">
+        <span class="flex items-center gap-2">Claude Code CLI</span>
+        <span class="flex items-center gap-2">Google Antigravity</span>
+        <span class="flex items-center gap-2">Cursor Composer</span>
+        <span class="flex items-center gap-2">Windsurf Cascade</span>
+        <span class="flex items-center gap-2">Claude Desktop</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 05. LIVE DEMO VIDEO (FEATURED LAUNCH VIDEO WITH AUDIO)                     -->
+  <!-- ========================================================================= -->
+  <section id="demo" class="py-16 px-4 sm:px-6 max-w-4xl mx-auto scroll-mt-14">
+    <div class="text-center max-w-2xl mx-auto mb-8">
+      <div class="text-[11px] font-mono text-muted uppercase tracking-wider mb-1.5">SEE IT IN ACTION</div>
+      <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink mb-2">
+        <span class="lang-en">Watch the 20-second product showcase</span>
+        <span class="lang-si">තප්පර 20න් වැඩේ වෙන හැටි බලන්න</span>
+        <span class="lang-ta">20 நொடிகளில் செயல்முறையை பாருங்கள்</span>
+      </h2>
+      <p class="text-xs sm:text-sm text-muted">
+        <span class="lang-en">From searching 100-page exam mark sheets to 1-prompt setup. Turn sound on for the full experience!</span>
+        <span class="lang-si">පිටු 100ක PDF වලින් Marks හොයන හැටි, Deadline alerts සහ 1-Prompt setup එක ක්ෂණිකව බලන්න.</span>
+        <span class="lang-ta">100 பக்க PDF-ல் இருந்து பரීட்சை முடிவுகளை தேடுவது மற்றும் 1-Prompt அமைப்பு.</span>
+      </p>
+    </div>
+
+    <!-- macOS Window Container -->
+    <div class="rounded-xl border border-hairline bg-surface mac-window overflow-hidden text-left relative">
+      <div class="h-9 px-4 bg-zinc-100 border-b border-hairline flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-[#ff5f56] border border-[#e0443e]"></span>
+          <span class="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#dea123]"></span>
+          <span class="w-3 h-3 rounded-full bg-[#27c93f] border border-[#1aab29]"></span>
+        </div>
+        <div class="font-mono text-xs text-muted truncate">sliitcoursewebmcp — launch showcase (1080p)</div>
+        <span class="text-xs font-mono text-emerald-600 font-semibold shrink-0">● WITH SOUND</span>
+      </div>
+
+      <div class="bg-zinc-950 aspect-[16/9] relative group">
+        <video 
+          id="demo-video-player"
+          autoplay 
+          loop 
+          muted 
+          playsinline 
+          controls
+          poster="assets/courseweb-launch-poster.jpg" 
+          class="w-full h-full object-contain"
+        >
+          <source src="assets/courseweb-launch-trailer.mp4" type="video/mp4" />
+        </video>
+
+        <!-- Quick Sound Toggle Button Overlay -->
+        <button 
+          id="video-unmute-btn" 
+          onclick="toggleVideoSound()" 
+          class="btn-spring absolute bottom-14 right-4 z-20 px-3 py-1.5 rounded-lg bg-zinc-900/80 hover:bg-zinc-900 text-white text-xs font-mono flex items-center gap-1.5 backdrop-blur-md border border-white/15 shadow-lg"
+          title="Toggle Video Sound"
+        >
+          <span>🔊 Turn Sound On</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 06. PRODUCT FEATURES & LIVE EVIDENCE                                      -->
+  <!-- ========================================================================= -->
+  <section id="features" class="py-16 border-t border-hairline bg-surface scroll-mt-14">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <div class="text-[11px] font-mono text-muted uppercase tracking-wider mb-2">PROVEN SUPERPOWERS</div>
+        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-ink mb-3">
+          <span class="lang-en">Real tasks solved in seconds.</span>
+          <span class="lang-si">තප්පර ගණනින් විසඳන සැබෑ උදාහරණ.</span>
+          <span class="lang-ta">நொடிகளில் முடிவடையும் வேலைகள்.</span>
+        </h2>
+        <p class="text-sm text-muted">
+          Here is how SLIIT students use this MCP server daily in their workflow.
+        </p>
+      </div>
+
+      <!-- 2 Featured Large Cards with Real Cropped Screenshots -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <!-- Card 1: Exam Mark Search -->
+        <div class="bg-page border border-hairline rounded-xl p-5 sm:p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-white border border-hairline">SUPERPOWER 01</span>
+              <span class="text-xs font-mono text-accent">103-page PDF parsed in 2s</span>
+            </div>
+            <h3 class="font-semibold text-lg text-ink mb-2">
+              <span class="lang-en">Instant Mid-Term Mark Extraction</span>
+              <span class="lang-si">පිටු 100ක Exam Mark Sheet එකෙන් Marks හොයමු</span>
+              <span class="lang-ta">பரீட்சை பெறுபேறுகளை நொடியில் தேடுங்கள்</span>
+            </h3>
+            <p class="text-xs text-muted leading-relaxed mb-4">
+              <span class="lang-en">Lecturers publish PDF result sheets containing thousands of student rows. Prompt: <em>"What are the PS mid exam marks for IT25103992?"</em>. It searches row #2,543 on Page 98 and reports 15.00/20 (75%) instantly.</span>
+              <span class="lang-si">Lecturers ලා දාන පිටු 100ක PDF mark sheet එකේ තමන්ගේ IT number එක හොයන්න scroll කරලා එපා වෙලාද? Agent ගෙන් අහන්න විතරයි තියෙන්නේ — Row 2,543 (Page 98) හොයලා 15.00/20 (75%) කියලා තප්පරෙන් කියනවා!</span>
+              <span class="lang-ta">விரிவுரையாளர்கள் இடும் 100 பக்க PDF-ல் உங்கள் IT எண்ணை தேடி அலுக்க வேண்டாம். Agent நொடிகளில் Row 2,543 (Page 98)-ஐ கண்டுபிடித்து முடிவை வழங்கும்!</span>
+            </p>
+          </div>
+          <div class="rounded-lg border border-hairline overflow-hidden bg-zinc-950">
+            <img src="assets/demo-marksheet.jpg" alt="Agent extracting mid-term exam marks from 103-page PDF" class="w-full h-auto block" loading="lazy">
+          </div>
+        </div>
+
+        <!-- Card 2: Live Module Updates -->
+        <div class="bg-page border border-hairline rounded-xl p-5 sm:p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-white border border-hairline">SUPERPOWER 02</span>
+              <span class="text-xs font-mono text-accent">Multi-course deep scan</span>
+            </div>
+            <h3 class="font-semibold text-lg text-ink mb-2">
+              <span class="lang-en">Automated Course Notice Radar</span>
+              <span class="lang-si">අලුත් Notices සහ Marks ආපු ගමන් දැනගන්න</span>
+              <span class="lang-ta">புதிய அறிவிப்புகள் மற்றும் முடிவுகளை அறிய</span>
+            </h3>
+            <p class="text-xs text-muted leading-relaxed mb-4">
+              <span class="lang-en">Prompt: <em>"Check what are new updates in SLIIT courseweb"</em>. The agent scans your enrolled courses, alerting you that mid-term marks were uploaded and recording links refreshed.</span>
+              <span class="lang-si"><em>"Courseweb එකේ අලුත් updates මොනවද?"</em> කියලා ඇහුවම IT2011 (AI/ML) සහ IT2120 (Probability & Statistics) වල Mid-Term marks release වෙලා තියෙන බවත්, lecture recordings update වෙලා තියෙන බවත් agent ක්ෂණිකව කියනවා.</span>
+              <span class="lang-ta">ஒரே கேள்வியில் உங்கள் அனைத்து பாடங்களின் புதிய அறிவிப்புகள், lecture recordings மற்றும் பரீட்சை முடிவுகளை agent பட்டியலிடும்.</span>
+            </p>
+          </div>
+          <div class="rounded-lg border border-hairline overflow-hidden bg-zinc-950">
+            <img src="assets/demo-updates.jpg" alt="Agent scanning course notices and module updates" class="w-full h-auto block" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <!-- 3x3 Grid sharing hairline dividers -->
+      <div class="border border-hairline rounded-xl overflow-hidden">
+        <div class="p-4 bg-zinc-50 border-b border-hairline flex items-center justify-between">
+          <span class="font-semibold text-xs text-ink uppercase tracking-wider font-mono">Available MCP Tools (JSON-RPC stdio)</span>
+          <span class="text-xs font-mono text-accent font-semibold">9 Tools Active</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-hairline bg-surface">
+          <div class="p-5 hover:bg-zinc-50/50 transition-colors">
+            <div class="font-mono text-xs font-semibold text-ink mb-1">list_modules</div>
+            <p class="text-xs text-muted">Lists all enrolled modules, titles, and Moodle course IDs.</p>
+          </div>
+          <div class="p-5 hover:bg-zinc-50/50 transition-colors">
+            <div class="font-mono text-xs font-semibold text-ink mb-1">get_deadlines</div>
+            <p class="text-xs text-muted">Fetches upcoming assignment cutoffs and calendar events.</p>
+          </div>
+          <div class="p-5 hover:bg-zinc-50/50 transition-colors">
+            <div class="font-mono text-xs font-semibold text-ink mb-1">sync_module</div>
+            <p class="text-xs text-muted">Bulk downloads lecture notes and lab sheets with MD5 deduplication.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 07. AUTHENTICATION & LOGIN METHODS                                        -->
+  <!-- ========================================================================= -->
+  <section id="auth" class="py-16 px-4 sm:px-6 max-w-6xl mx-auto scroll-mt-14">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <div class="text-[11px] font-mono text-muted uppercase tracking-wider mb-2">SECURITY & ACCESS</div>
+      <h2 class="text-3xl font-semibold tracking-tight text-ink mb-3">
+        <span class="lang-en">Two authentication methods. <br><span class="text-muted">Zero credential leaks.</span></span>
+        <span class="lang-si">ලොග් වෙන ක්‍රම 2ක්. <br><span class="text-muted">Password කාටවත් පේන්නේ නෑ, ඔක්කොම Local.</span></span>
+        <span class="lang-ta">இரண்டு உள்நுழைவு முறைகள். <br><span class="text-muted">பாதுகாப்பானது, முற்றிலும் Local.</span></span>
+      </h2>
+      <p class="text-xs sm:text-sm text-muted">
+        Your IT number and password stay strictly on your local computer. We never transmit credentials to external servers.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+      <!-- Method 1: Interactive SSO -->
+      <div class="border border-hairline rounded-xl p-6 bg-surface flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="px-2.5 py-1 rounded text-xs font-mono bg-page border border-hairline text-ink font-semibold">METHOD 01</span>
+            <span class="text-xs font-mono text-muted">For Personal Laptops</span>
+          </div>
+          <h3 class="text-lg font-semibold text-ink mb-2">
+            <span class="lang-en">Interactive SSO with Microsoft MFA</span>
+            <span class="lang-si">Interactive SSO (Phone එකෙන් MFA Approve කරන ක්‍රමය)</span>
+            <span class="lang-ta">Interactive SSO (MFA உடன்)</span>
+          </h3>
+          <p class="text-xs text-muted leading-relaxed mb-6">
+            Best for Mac, Windows, and Linux desktops. Playwright launches a browser window, auto-types your credentials, and pauses for Microsoft Authenticator approval. Saved to <code>storage_state.json</code>.
+          </p>
+
+          <div class="space-y-2.5 border-t border-hairline pt-4 font-mono text-xs text-zinc-700">
+            <div class="flex items-center gap-2">
+              <span class="text-muted">01</span>
+              <span>Set <code class="text-amber-600 bg-amber-50 px-1 py-0.5 rounded">SLIIT_USERNAME</code> & <code class="text-amber-600 bg-amber-50 px-1 py-0.5 rounded">SLIIT_PASSWORD</code> in .env</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-muted">02</span>
+              <span>Ask Agent: <span class="text-blue-600 font-medium">"Please run interactive_login"</span></span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-muted">03</span>
+              <span>Approve prompt on Microsoft Authenticator</span>
+            </div>
+            <div class="flex items-center gap-2 text-accent font-semibold">
+              <span class="text-muted">04</span>
+              <span>✓ Saved locally (Headless ready)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Method 2: Headless Cookie Injection -->
+      <div class="border border-hairline rounded-xl p-6 bg-surface flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="px-2.5 py-1 rounded text-xs font-mono bg-page border border-hairline text-ink font-semibold">METHOD 02</span>
+            <span class="text-xs font-mono text-muted">For Cloud VMs & Docker</span>
+          </div>
+          <h3 class="text-lg font-semibold text-ink mb-2">
+            <span class="lang-en">Headless MoodleSession Cookie</span>
+            <span class="lang-si">Session Cookie එක (Cloud VMs & Headless ක්‍රමය)</span>
+            <span class="lang-ta">Headless Session Cookie முறை</span>
+          </h3>
+          <p class="text-xs text-muted leading-relaxed mb-4">
+            Best for headless Linux servers, GitHub Codespaces, or VPS instances where no browser UI exists. Extract your session cookie in 1 click from Chrome DevTools.
+          </p>
+
+          <div class="rounded-lg border border-hairline overflow-hidden bg-zinc-950 mb-3">
+            <img src="assets/demo-devtools-cookie.jpg" alt="Chrome DevTools Cookies panel" class="w-full h-auto block" loading="lazy">
+          </div>
+
+          <div class="bg-zinc-950 rounded-lg p-2.5 text-[11px] font-mono text-emerald-400 select-all border border-zinc-800">
+            copy(document.cookie.split('; ').find(r => r.startsWith('MoodleSession=')).split('=')[1])
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 08. FOUNDER NOTE                                                          -->
+  <!-- ========================================================================= -->
+  <section class="py-16 px-4 sm:px-6 max-w-3xl mx-auto text-center border-t border-hairline">
+    <div class="w-14 h-14 rounded-2xl overflow-hidden border border-hairline bg-white mx-auto mb-4 shadow-sm">
+      <img src="assets/kesaru-pig-logo-sm.jpg" alt="Kesaru Hasun Flying Pig Brand" class="w-full h-full object-cover">
+    </div>
+
+    <div class="text-[11px] font-mono text-muted uppercase tracking-wider mb-2">WHY THIS WAS BUILT</div>
+    <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink mb-4">
+      <span class="lang-en">Built out of exam week frustration.</span>
+      <span class="lang-si">Exam අස්සේ Moodle එකේ slides හොයලා ඇතිවෙලා.</span>
+      <span class="lang-ta">பரீட்சை நேரத்தில் Moodle-ல் அவதிப்பட்டதன் விளைவு.</span>
+    </h2>
+
+    <p class="text-xs sm:text-sm text-muted leading-relaxed mb-6 font-normal">
+      "Every semester at SLIIT, students spend hours downloading weekly slide decks, getting logged out due to 20-minute session timeouts, and missing obscure deadline posts. We built this MCP server so students and developers can talk directly to their academic portal using AI."
+    </p>
+
+    <div class="flex items-center justify-center gap-4 text-xs font-mono">
+      <a href="https://kesaru.me" target="_blank" class="text-ink font-semibold hover:underline flex items-center gap-1">
+        <span>kesaru.me</span>
+        <span class="text-muted">↗</span>
+      </a>
+      <span class="text-zinc-300">·</span>
+      <a href="https://kesaru.me/about" target="_blank" class="text-ink font-semibold hover:underline flex items-center gap-1">
+        <span>About Page</span>
+        <span class="text-muted">↗</span>
+      </a>
+      <span class="text-zinc-300">·</span>
+      <a href="https://github.com/kesaruhasun" target="_blank" class="text-ink font-semibold hover:underline flex items-center gap-1">
+        <span>@kesaruhasun</span>
+        <span class="text-muted">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 09. FAQ ACCORDION                                                         -->
+  <!-- ========================================================================= -->
+  <section id="faq" class="py-16 border-t border-hairline bg-surface scroll-mt-14">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-10">
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="divide-y divide-hairline border-y border-hairline font-sans">
+        <details class="group py-4">
+          <summary class="flex items-center justify-between cursor-pointer font-medium text-sm text-ink group-open:text-zinc-600">
+            <span>Is my SLIIT password or IT number sent anywhere?</span>
+            <span class="font-mono text-muted group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <div class="text-xs text-muted leading-relaxed mt-2.5 pr-6 font-normal">
+            No. The MCP server runs 100% locally on your computer over standard I/O (stdio). Your credentials and cookies are stored only in your local <code>.env</code> and <code>storage_state.json</code>.
+          </div>
+        </details>
+
+        <details class="group py-4">
+          <summary class="flex items-center justify-between cursor-pointer font-medium text-sm text-ink group-open:text-zinc-600">
+            <span>What if I have Microsoft Multi-Factor Authentication (MFA) enabled?</span>
+            <span class="font-mono text-muted group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <div class="text-xs text-muted leading-relaxed mt-2.5 pr-6 font-normal">
+            Run the <code>interactive_login</code> tool. It launches a visible browser window, pre-fills your email, and pauses so you can approve the prompt on your Microsoft Authenticator app.
+          </div>
+        </details>
+
+        <details class="group py-4">
+          <summary class="flex items-center justify-between cursor-pointer font-medium text-sm text-ink group-open:text-zinc-600">
+            <span>Does this violate SLIIT IT policies?</span>
+            <span class="font-mono text-muted group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <div class="text-xs text-muted leading-relaxed mt-2.5 pr-6 font-normal">
+            This tool is built strictly for personal educational convenience and respects campus servers with reasonable request intervals. Personal educational use only.
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 10. FINAL CALL TO ACTION                                                  -->
+  <!-- ========================================================================= -->
+  <section class="py-20 px-4 sm:px-6 text-center bg-hatch border-t border-hairline relative overflow-hidden">
+    <div class="relative max-w-3xl mx-auto">
+      <h2 class="text-3xl sm:text-5xl font-semibold tracking-tight text-ink mb-4">
+        <span class="lang-en">Stop clicking through Moodle. <br><span class="text-muted">Hand your Courseweb to your AI.</span></span>
+        <span class="lang-si">Courseweb එකේ ක්ලික් කර කර ඉන්න කාලය ඉවරයි. <br><span class="text-muted">ඔයාගේ AI Agent එකට වැඩේ බාර දෙන්න.</span></span>
+        <span class="lang-ta">Moodle-ல் நேரத்தை வீணடிப்பதை நிறுத்துங்கள். <br><span class="text-muted">உங்கள் AI Agent-யிடம் பொறுப்பை ஒப்படையுங்கள்.</span></span>
+      </h2>
+      <p class="text-sm text-muted mb-8 max-w-xl mx-auto">
+        Set up in under two minutes. Free, open source, and 100% local.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href="#install" class="btn-spring inline-flex items-center gap-2 bg-emerald-600 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:bg-emerald-500 shadow-lg shadow-emerald-950/20">
+          <span>⚡ Get Install Prompt</span>
+        </a>
+        <a href="https://github.com/kesaruhasun/mcp-sliit-courseweb" target="_blank" class="btn-spring inline-flex items-center gap-2 bg-ink text-white font-medium text-sm px-6 py-3 rounded-xl hover:bg-zinc-800">
+          <span>Star on GitHub ★</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 11. FOOTER                                                                -->
+  <!-- ========================================================================= -->
+  <footer class="border-t border-hairline bg-surface py-10 px-4 sm:px-6 text-xs text-muted font-sans">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+      <div>
+        <a href="https://kesaru.me" target="_blank" class="font-semibold text-ink text-sm mb-2 flex items-center gap-2 group">
+          <div class="w-6 h-6 rounded-md overflow-hidden border border-hairline bg-white shrink-0">
+            <img src="assets/kesaru-pig-logo-sm.jpg" alt="Kesaru Pig Logo" class="w-full h-full object-cover">
+          </div>
+          <span class="group-hover:text-zinc-600">kesaru.me</span>
+        </a>
+        <p class="text-[11px] text-muted leading-relaxed mb-3">
+          Model Context Protocol (MCP) server connecting SLIIT Courseweb (Moodle) with AI coding agents.
+        </p>
+        <div class="font-mono text-[10px] text-zinc-400">Personal educational use only. Not affiliated with SLIIT.</div>
+      </div>
+
+      <div>
+        <div class="font-semibold text-ink text-xs mb-3 font-mono uppercase tracking-wider">PROJECT</div>
+        <ul class="space-y-2 text-xs">
+          <li><a href="https://github.com/kesaruhasun/mcp-sliit-courseweb" target="_blank" class="hover:text-ink">GitHub Repository ★</a></li>
+          <li><a href="https://github.com/kesaruhasun/mcp-sliit-courseweb/releases" target="_blank" class="hover:text-ink">Releases</a></li>
+          <li><a href="https://github.com/kesaruhasun/mcp-sliit-courseweb/issues" target="_blank" class="hover:text-ink">Issues</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="font-semibold text-ink text-xs mb-3 font-mono uppercase tracking-wider">RESOURCES</div>
+        <ul class="space-y-2 text-xs">
+          <li><a href="#install" class="hover:text-ink">Install Prompts</a></li>
+          <li><a href="#auth" class="hover:text-ink">SSO Login Guide</a></li>
+          <li><a href="#features" class="hover:text-ink">Features</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="font-semibold text-ink text-xs mb-3 font-mono uppercase tracking-wider">KESARU HASUN</div>
+        <ul class="space-y-2 text-xs">
+          <li><a href="https://kesaru.me" target="_blank" class="hover:text-ink">Website ↗</a></li>
+          <li><a href="https://kesaru.me/about" target="_blank" class="hover:text-ink">About Kesaru ↗</a></li>
+          <li><a href="https://github.com/kesaruhasun" target="_blank" class="hover:text-ink">GitHub Profile ↗</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto pt-6 border-t border-hairline flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-muted gap-2">
+      <div>© 2026 Kesaru Hasun. MIT Licensed Open Source.</div>
+      <div class="flex gap-4">
+        <a href="https://github.com/kesaruhasun" target="_blank" class="hover:text-ink">GitHub</a>
+        <a href="https://kesaru.me/about" target="_blank" class="hover:text-ink">About</a>
+        <a href="#" class="hover:text-ink">Top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT: LANGUAGE SWITCHER & AGENT PROMPT TABS                         -->
+  <!-- ========================================================================= -->
+  <script>
+    // --- 1. LANGUAGE SWITCHER ---
+    function setLanguage(lang) {
+      document.body.setAttribute('data-active-lang', lang);
+      
+      const langs = ['en', 'si', 'ta'];
+      langs.forEach(l => {
+        const btn = document.getElementById('btn-lang-' + l);
+        if (l === lang) {
+          btn.className = 'px-2 py-0.5 sm:py-1 rounded font-medium transition-all bg-ink text-white';
+        } else {
+          btn.className = 'px-2 py-0.5 sm:py-1 rounded font-medium transition-all text-muted hover:text-ink';
+        }
+      });
+      localStorage.setItem('preferred_lang', lang);
+    }
+
+    // Check URL params, hash, or localStorage for language preference
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get('lang');
+    const hash = window.location.hash;
+    let initialLang = 'en';
+    if (langParam && ['en', 'si', 'ta'].includes(langParam)) {
+      initialLang = langParam;
+    } else if (hash === '#lang-si') {
+      initialLang = 'si';
+    } else if (hash === '#lang-ta') {
+      initialLang = 'ta';
+    } else {
+      const savedLang = localStorage.getItem('preferred_lang');
+      if (savedLang && ['en', 'si', 'ta'].includes(savedLang)) {
+        initialLang = savedLang;
+      }
+    }
+    setLanguage(initialLang);
+
+    // --- 2. AGENT SELF-INSTALL PROMPT SNIPPETS ---
+    const agentPrompts = {
+      claude: `Please configure the SLIIT Courseweb MCP server for Claude Code CLI:
+1. Run: git clone https://github.com/kesaruhasun/mcp-sliit-courseweb.git
+2. Inside the folder run: npm install && npm run build
+3. Add to Claude Code MCP registry:
+   claude mcp add sliit_courseweb node "$(pwd)/build/index.js" -e HEADLESS=true
+4. Run \`claude mcp list\` to verify the server is connected.
+5. Remind me to perform \`interactive_login\` if my session token is expired.`,
+
+      antigravity: `Antigravity, please self-configure the SLIIT Courseweb MCP server:
+1. Inspect the workspace or clone \`https://github.com/kesaruhasun/mcp-sliit-courseweb.git\`.
+2. Run \`npm install\` and compile TypeScript using \`npm run build\`.
+3. Add the \`sliit_courseweb\` definition into the appropriate MCP configuration (\`mcp_config.json\`) pointing \`command\` to \`node\` and \`args\` to the absolute path of \`build/index.js\`.
+4. Check if the build artifact exists and confirm tool schema registration for \`list_modules\`, \`sync_module\`, and \`get_deadlines\`.
+5. Instruct me on whether to perform \`interactive_login\` for MFA or inject \`MoodleSession\` with \`set_session_cookie\`.`,
+
+      cursor: `You are my Cursor coding agent. Please install and self-configure the SLIIT Courseweb MCP server in this workspace:
+1. Verify if git, node (v18+), and npm are installed.
+2. Clone \`https://github.com/kesaruhasun/mcp-sliit-courseweb.git\` if not already in workspace.
+3. In that folder, run: \`npm install && npm run build\`.
+4. Configure \`.cursor/mcp.json\` in workspace root:
+   {
+     "mcpServers": {
+       "sliit_courseweb": {
+         "command": "node",
+         "args": ["<ABSOLUTE_PATH_TO_BUILD_INDEX_JS>"],
+         "env": {
+           "SLIIT_USERNAME": "your_it_number",
+           "SLIIT_PASSWORD": "your_password",
+           "HEADLESS": "true"
+         }
+       }
+     }
+   }
+5. Check if \`storage_state.json\` exists. If not, guide me to run \`interactive_login\` or set my cookie via \`set_session_cookie\`.`,
+
+      windsurf: `Cascade, please install the SLIIT Courseweb MCP server for this session:
+1. Clone \`https://github.com/kesaruhasun/mcp-sliit-courseweb.git\` and compile: \`npm install && npm run build\`.
+2. Add the configuration to \`~/.codeium/windsurf/mcp_config.json\`:
+   {
+     "mcpServers": {
+       "sliit_courseweb": {
+         "command": "node",
+         "args": ["<ABSOLUTE_PATH_TO_BUILD_INDEX_JS>"],
+         "env": { "HEADLESS": "true" }
+       }
+     }
+   }
+3. Restart your MCP connection and test by running \`get_deadlines\`.`,
+
+      claudedesktop: `Add this block to your \`claude_desktop_config.json\`:
+{
+  "mcpServers": {
+    "sliit_courseweb": {
+      "command": "node",
+      "args": ["/ABSOLUTE/PATH/TO/mcp-sliit-courseweb/build/index.js"],
+      "env": {
+        "SLIIT_USERNAME": "your_it_number",
+        "SLIIT_PASSWORD": "your_password",
+        "HEADLESS": "true"
+      }
+    }
+  }
+}`
+    };
+
+    const manualJsons = {
+      claude: `claude mcp add sliit_courseweb node "/ABSOLUTE/PATH/TO/mcp-sliit-courseweb/build/index.js" -e HEADLESS=true`,
+      antigravity: `{
+  "mcpServers": {
+    "sliit_courseweb": {
+      "command": "node",
+      "args": ["/ABSOLUTE/PATH/TO/mcp-sliit-courseweb/build/index.js"],
+      "env": {
+        "SLIIT_USERNAME": "ITxxxxxxxx",
+        "SLIIT_PASSWORD": "your_password",
+        "HEADLESS": "true"
+      }
+    }
+  }
+}`,
+      cursor: `{
+  "mcpServers": {
+    "sliit_courseweb": {
+      "command": "node",
+      "args": ["/ABSOLUTE/PATH/TO/mcp-sliit-courseweb/build/index.js"],
+      "env": {
+        "SLIIT_USERNAME": "ITxxxxxxxx",
+        "SLIIT_PASSWORD": "your_password",
+        "HEADLESS": "true"
+      }
+    }
+  }
+}`,
+      windsurf: `{
+  "mcpServers": {
+    "sliit_courseweb": {
+      "command": "node",
+      "args": ["/ABSOLUTE/PATH/TO/mcp-sliit-courseweb/build/index.js"],
+      "env": {
+        "HEADLESS": "true"
+      }
+    }
+  }
+}`,
+      claudedesktop: `{
+  "mcpServers": {
+    "sliit_courseweb": {
+      "command": "node",
+      "args": ["/ABSOLUTE/PATH/TO/mcp-sliit-courseweb/build/index.js"],
+      "env": {
+        "SLIIT_USERNAME": "ITxxxxxxxx",
+        "SLIIT_PASSWORD": "your_password",
+        "HEADLESS": "true"
+      }
+    }
+  }
+}`
+    };
+
+    let activeAgentTab = 'claude'; // Default is Claude Code
+
+    function setAgentTab(agentKey) {
+      activeAgentTab = agentKey;
+      const tabs = ['claude', 'antigravity', 'cursor', 'windsurf', 'claudedesktop'];
+      tabs.forEach(t => {
+        const btn = document.getElementById('tab-' + t);
+        if (t === agentKey) {
+          btn.className = 'btn-spring shrink-0 px-3.5 py-2 rounded-lg border border-ink bg-ink text-white font-semibold transition-all flex items-center gap-2 shadow-xs';
+        } else {
+          btn.className = 'btn-spring shrink-0 px-3.5 py-2 rounded-lg border border-hairline bg-page text-muted hover:text-ink font-semibold transition-all flex items-center gap-2';
+        }
+      });
+
+      const labelMap = {
+        claude: 'Claude Code CLI',
+        antigravity: 'Google Antigravity',
+        cursor: 'Cursor Composer',
+        windsurf: 'Windsurf Cascade',
+        claudedesktop: 'Claude Desktop'
+      };
+
+      document.getElementById('active-agent-label').innerHTML = `Target Agent: <strong class="text-white">${labelMap[agentKey]}</strong>`;
+      document.getElementById('agent-prompt-display').textContent = agentPrompts[agentKey];
+      document.getElementById('manual-json-display').textContent = manualJsons[agentKey];
+    }
+
+    function copyActivePrompt() {
+      const text = agentPrompts[activeAgentTab];
+      navigator.clipboard.writeText(text).then(() => {
+        const btnText = document.getElementById('copy-btn-text');
+        btnText.textContent = 'Copied! ✓';
+        setTimeout(() => {
+          btnText.textContent = 'Copy Prompt to Clipboard';
+        }, 2200);
+      });
+    }
+
+    function toggleVideoSound() {
+      const player = document.getElementById('demo-video-player');
+      const btn = document.getElementById('video-unmute-btn');
+      if (player.muted) {
+        player.muted = false;
+        btn.innerHTML = '<span>🔈 Mute</span>';
+      } else {
+        player.muted = true;
+        btn.innerHTML = '<span>🔊 Turn Sound On</span>';
+      }
+    }
+
+    // Initialize Claude Code as default
+    setAgentTab('claude');
+  </script>
+</body>
+</html>
