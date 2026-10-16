@@ -84,33 +84,118 @@ export class CoursewebClient {
         return `Successfully injected MoodleSession cookie and saved state to ${sessionPath}`;
     }
 
-    async interactiveLogin() {
+    async interactiveLogin(): Promise<string> {
+        const sessionPath = path.resolve(__dirname, '../storage_state.json');
+
         // Force a visible browser specifically for interactive login
         const interactiveBrowser = await chromium.launch(this.getLaunchOptions(false));
-        const loginContext = await interactiveBrowser.newContext();
+        const contextOptions = fs.existsSync(sessionPath) ? { storageState: sessionPath } : {};
+        const loginContext = await interactiveBrowser.newContext(contextOptions);
         const page = await loginContext.newPage();
         
         console.error("Opening browser for interactive login...");
-        await page.goto('https://courseweb.sliit.lk/login/index.php');
-        
-        try {
-            await page.waitForURL('**/my/**', { timeout: 120000 });
-            console.error("Login successful! Saving session...");
-            const sessionPath = path.resolve(__dirname, '../storage_state.json');
-            await loginContext.storageState({ path: sessionPath });
-            return `Login successful! Session saved to ${sessionPath}. All other tools will now run in the background (headless).`;
-        } catch (error) {
-            return "Login timed out or failed. Please try again.";
-        } finally {
-            await loginContext.close();
-            await interactiveBrowser.close();
-            
-            // If the main client browser was running, we re-initialize it to pick up the new cookie
-            if (this.browser) {
-                await this.browser.close();
-                await this.init();
+
+        // 1. Quick check: Is existing session still valid?
+        if (fs.existsSync(sessionPath)) {
+            try {
+                await page.goto('https://courseweb.sliit.lk/my/', { timeout: 8000, waitUntil: 'domcontentloaded' });
+                if (page.url().includes('/my/')) {
+                    console.error("Session already active and valid.");
+                    await loginContext.close().catch(() => {});
+                    await interactiveBrowser.close().catch(() => {});
+                    return `Session is already active and valid! All tools can run headlessly.`;
+                }
+            } catch {
+                // Proceed to login page
             }
         }
+
+        await page.goto('https://courseweb.sliit.lk/login/index.php');
+
+        // 2. Automated SSO pre-fill to speed up interactive login (well within client timeout)
+        (async () => {
+            try {
+                const ssoButton = page.locator('.login-identityprovider-btn');
+                if (await ssoButton.isVisible({ timeout: 5000 }).catch(() => false)) {
+                    await ssoButton.click().catch(() => {});
+                }
+
+                if (process.env.SLIIT_USERNAME) {
+                    const emailInput = page.locator('input[type="email"], #i0116');
+                    if (await emailInput.isVisible({ timeout: 8000 }).catch(() => false)) {
+                        const username = process.env.SLIIT_USERNAME.includes('@')
+                            ? process.env.SLIIT_USERNAME
+                            : `${process.env.SLIIT_USERNAME}@my.sliit.lk`;
+                        await emailInput.fill(username);
+                        await page.locator('input[type="submit"], #idSIButton9').click().catch(() => {});
+                    }
+                }
+
+                if (process.env.SLIIT_PASSWORD) {
+                    const passInput = page.locator('input[type="password"], #i0118');
+                    if (await passInput.isVisible({ timeout: 8000 }).catch(() => false)) {
+                        await passInput.fill(process.env.SLIIT_PASSWORD);
+                        await page.locator('input[type="submit"], #idSIButton9').click().catch(() => {});
+                    }
+                }
+            } catch {}
+        })();
+
+        // 3. Monitor for Microsoft "Stay signed in?" (KMSI) prompt and auto-confirm
+        const kmsiInterval = setInterval(async () => {
+            try {
+                if (page.isClosed()) {
+                    clearInterval(kmsiInterval);
+                    return;
+                }
+                const staySignedInBtn = page.locator('input[type="submit"][value="Yes"], #idSIButton9');
+                if (await staySignedInBtn.isVisible({ timeout: 500 }).catch(() => false)) {
+                    await staySignedInBtn.click().catch(() => {});
+                }
+            } catch {}
+        }, 1000);
+
+        let completed = false;
+        const cleanupAndSave = async () => {
+            if (completed) return;
+            completed = true;
+            clearInterval(kmsiInterval);
+            console.error("Login successful! Saving session...");
+            await loginContext.storageState({ path: sessionPath });
+            await loginContext.close().catch(() => {});
+            await interactiveBrowser.close().catch(() => {});
+            
+            if (this.browser) {
+                await this.browser.close().catch(() => {});
+                await this.init().catch(() => {});
+            }
+        };
+
+        const loginPromise = page.waitForURL('**/my/**', { timeout: 180000 })
+            .then(async () => {
+                await cleanupAndSave();
+                return `Login successful! Session saved to ${sessionPath}. All other tools will now run in the background (headless).`;
+            })
+            .catch(async () => {
+                clearInterval(kmsiInterval);
+                if (!completed) {
+                    completed = true;
+                    await loginContext.close().catch(() => {});
+                    await interactiveBrowser.close().catch(() => {});
+                }
+                return "Login timed out or was closed. Please try again.";
+            });
+
+        // 4. Race against a 45s safety timer to respond before the MCP client's 60s hard timeout
+        const clientSafetyTimeout = new Promise<string>((resolve) => {
+            setTimeout(() => {
+                if (!completed) {
+                    resolve(`Interactive login is in progress in your browser window. Please complete MFA/verification there. Once you reach the dashboard, your session will be saved automatically.`);
+                }
+            }, 45000);
+        });
+
+        return await Promise.race([loginPromise, clientSafetyTimeout]);
     }
 
     async login() {
