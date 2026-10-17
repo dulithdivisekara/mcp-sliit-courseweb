@@ -4,7 +4,7 @@
 
 # SLIIT Courseweb MCP Server 🚀
 
-**Bridge SLIIT Courseweb (Moodle) into Claude Code, Cursor, Antigravity & AI Coding Assistants.**
+**Bridge SLIIT Courseweb (Moodle) into Claude Code, Antigravity, OpenAI Codex, ChatGPT & Cursor.**
 
 [![MCP Protocol](https://img.shields.io/badge/MCP-Model_Context_Protocol-blue.svg?style=for-the-badge)](https://modelcontextprotocol.io)
 [![Live Website](https://img.shields.io/badge/Live_Site-sliitcoursewebmcp.kesaru.me-16a34a.svg?style=for-the-badge)](https://sliitcoursewebmcp.kesaru.me)
@@ -93,6 +93,41 @@ Antigravity, please self-configure the SLIIT Courseweb MCP server:
 4. Confirm tool schema registration for `list_modules`, `sync_module`, and `get_deadlines`.
 5. Guide me on running `interactive_login` or injecting `MoodleSession` via `set_session_cookie`.
 ```
+
+### 🟢 OpenAI Codex
+
+```markdown
+You are OpenAI Codex. Please install and self-configure the SLIIT Courseweb MCP server in this workspace:
+1. Clone the repository if not already present:
+   git clone https://github.com/kesaruhasun/mcp-sliit-courseweb.git
+2. Navigate into `mcp-sliit-courseweb` and compile:
+   npm install && npm run build
+3. Register the MCP server via Codex CLI:
+   codex mcp add sliit_courseweb --env HEADLESS=true -- node "$(pwd)/mcp-sliit-courseweb/build/index.js"
+   (or configure [mcp_servers.sliit_courseweb] in ~/.codex/config.toml or .codex/config.toml)
+4. Confirm tool schema registration for `list_modules`, `get_deadlines`, and `sync_module`.
+5. Guide me on running `interactive_login` for Microsoft MFA or injecting `MoodleSession` via `set_session_cookie`.
+```
+
+### 💬 ChatGPT Desktop App (macOS & Windows)
+
+Connect SLIIT Courseweb MCP directly to ChatGPT Desktop App:
+
+1. **Clone & compile**:
+   ```bash
+   git clone https://github.com/kesaruhasun/mcp-sliit-courseweb.git
+   cd mcp-sliit-courseweb && npm install && npm run build
+   ```
+2. **Start the local SSE bridge** (supports ChatGPT remote MCP protocol):
+   ```bash
+   npx -y supergateway --port 8000 -- node build/index.js
+   ```
+3. **In ChatGPT Desktop App**:
+   - Go to **Settings** → **Connectors** (or **Developer Mode**).
+   - Toggle Developer Mode **ON** and click **"Add MCP Server"**.
+   - Server Name: `SLIIT Courseweb`
+   - Server URL: `http://localhost:8000/sse`
+4. In any chat, prompt ChatGPT: *"List my enrolled Courseweb modules and check any upcoming deadlines."*
 
 ### ⬛ Cursor Composer / IDE
 

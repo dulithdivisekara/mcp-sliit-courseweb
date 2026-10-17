@@ -410,7 +410,23 @@
           <span>Antigravity</span>
         </button>
 
-        <!-- 3. Cursor Agent -->
+        <!-- 3. OpenAI Codex -->
+        <button onclick="setAgentTab('codex')" id="tab-codex" class="btn-spring shrink-0 px-3.5 py-2 rounded-lg border border-hairline bg-page text-muted hover:text-ink font-semibold transition-all flex items-center gap-2">
+          <svg class="w-4 h-4 fill-current text-emerald-600" viewBox="0 0 24 24">
+            <path d="M22.28 9.82a5.98 5.98 0 0 0-.52-4.91 6.05 6.05 0 0 0-6.51-2.9 6.07 6.07 0 0 0-4.27 2.17 5.98 5.98 0 0 0-4 2.9 6.05 6.05 0 0 0 .74 7.1 5.98 5.98 0 0 0 .51 4.91 6.05 6.05 0 0 0 6.51 2.9A5.98 5.98 0 0 0 13.26 24a6.06 6.06 0 0 0 5.77-4.21 5.99 5.99 0 0 0 4-2.9 6.06 6.06 0 0 0-.75-7.07zm-9.02 12.61a4.48 4.48 0 0 1-2.88-1.04l.14-.08 4.78-2.76a.79.79 0 0 0 .39-.68v-6.74l2.02 1.17a.07.07 0 0 1 .04.05v5.58a4.5 4.5 0 0 1-4.49 4.5zm-9.66-4.13a4.47 4.47 0 0 1-.53-3.01l.14.08 4.78 2.76a.77.77 0 0 0 .78 0l5.85-3.37v2.33a.08.08 0 0 1-.03.06L9.74 19.95a4.5 4.5 0 0 1-6.14-1.65zM2.34 7.9a4.49 4.49 0 0 1 2.37-1.98v5.69a.77.77 0 0 0 .38.67l5.82 3.36-2.02 1.17a.08.08 0 0 1-.07 0L4.83 14A4.5 4.5 0 0 1 2.34 7.9zm16.6 3.85L13.1 8.36l2.02-1.16a.08.08 0 0 1 .07 0l4.83 2.79a4.5 4.5 0 0 1-.68 8.1v-5.67a.79.79 0 0 0-.4-.67zm2.01-3.02l-.14-.09-4.78-2.78a.78.78 0 0 0-.78 0L9.41 9.23V6.9a.07.07 0 0 1 .03-.06l4.83-2.79a4.5 4.5 0 0 1 6.68 4.66zM8.3 12.86l-2.02-1.16a.08.08 0 0 1-.04-.06V6.07a4.5 4.5 0 0 1 7.38-3.45l-.14.08-4.78 2.76a.79.79 0 0 0-.4.68zm1.15-1.55l2.55-1.47 2.55 1.47v2.94l-2.55 1.47-2.55-1.47z"/>
+          </svg>
+          <span>Codex</span>
+        </button>
+
+        <!-- 4. ChatGPT App -->
+        <button onclick="setAgentTab('chatgpt')" id="tab-chatgpt" class="btn-spring shrink-0 px-3.5 py-2 rounded-lg border border-hairline bg-page text-muted hover:text-ink font-semibold transition-all flex items-center gap-2">
+          <svg class="w-4 h-4 fill-none stroke-current text-teal-600" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+          </svg>
+          <span>ChatGPT App</span>
+        </button>
+
+        <!-- 5. Cursor Agent -->
         <button onclick="setAgentTab('cursor')" id="tab-cursor" class="btn-spring shrink-0 px-3.5 py-2 rounded-lg border border-hairline bg-page text-muted hover:text-ink font-semibold transition-all flex items-center gap-2">
           <svg class="w-4 h-4 fill-current text-zinc-900" viewBox="0 0 24 24">
             <path d="M12 1.5l9 5.2v10.6l-9 5.2-9-5.2V6.7l9-5.2zm0 2.3L4.8 8.4l7.2 4.2 7.2-4.2-7.2-4.6zm-7.2 6.5v7.6l6.2 3.6v-7.6l-6.2-3.6zm14.4 0l-6.2 3.6v7.6l6.2-3.6v-7.6z"/>
@@ -418,13 +434,13 @@
           <span>Cursor</span>
         </button>
 
-        <!-- 4. Windsurf -->
+        <!-- 6. Windsurf -->
         <button onclick="setAgentTab('windsurf')" id="tab-windsurf" class="btn-spring shrink-0 px-3.5 py-2 rounded-lg border border-hairline bg-page text-muted hover:text-ink font-semibold transition-all flex items-center gap-2">
           <svg class="w-4 h-4 fill-current text-teal-600" viewBox="0 0 24 24"><path d="M3 13c3.5 0 5-6 9-6s5.5 6 9 6-3.5 6-9 6-5.5-6-9-6z"/></svg>
           <span>Windsurf</span>
         </button>
 
-        <!-- 5. Claude Desktop -->
+        <!-- 7. Claude Desktop -->
         <button onclick="setAgentTab('claudedesktop')" id="tab-claudedesktop" class="btn-spring shrink-0 px-3.5 py-2 rounded-lg border border-hairline bg-page text-muted hover:text-ink font-semibold transition-all flex items-center gap-2">
           <svg class="w-4 h-4 fill-current text-amber-700" viewBox="0 0 24 24"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/></svg>
           <span>Claude Desktop</span>
@@ -491,6 +507,8 @@
       <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-8 text-xs sm:text-sm font-semibold text-zinc-700">
         <span class="flex items-center gap-2">Claude Code CLI</span>
         <span class="flex items-center gap-2">Google Antigravity</span>
+        <span class="flex items-center gap-2">OpenAI Codex</span>
+        <span class="flex items-center gap-2">ChatGPT App</span>
         <span class="flex items-center gap-2">Cursor Composer</span>
         <span class="flex items-center gap-2">Windsurf Cascade</span>
         <span class="flex items-center gap-2">Claude Desktop</span>
@@ -1160,6 +1178,30 @@
 4. Check if the build artifact exists and confirm tool schema registration for \`list_modules\`, \`sync_module\`, and \`get_deadlines\`.
 5. Instruct me on whether to perform \`interactive_login\` for MFA or inject \`MoodleSession\` with \`set_session_cookie\`.`,
 
+      codex: `You are OpenAI Codex. Please install and self-configure the SLIIT Courseweb MCP server in this workspace:
+1. Clone the repository if not already present:
+   git clone https://github.com/kesaruhasun/mcp-sliit-courseweb.git
+2. Navigate into \`mcp-sliit-courseweb\` and compile:
+   npm install && npm run build
+3. Register the MCP server via Codex CLI:
+   codex mcp add sliit_courseweb --env HEADLESS=true -- node "\$(pwd)/mcp-sliit-courseweb/build/index.js"
+   (or configure [mcp_servers.sliit_courseweb] in ~/.codex/config.toml or .codex/config.toml)
+4. Confirm tool schema registration for \`list_modules\`, \`get_deadlines\`, and \`sync_module\`.
+5. Guide me on running \`interactive_login\` for Microsoft MFA or injecting \`MoodleSession\` via \`set_session_cookie\`.`,
+
+      chatgpt: `How to connect SLIIT Courseweb MCP to ChatGPT Desktop App (macOS & Windows):
+1. Clone and compile the MCP server:
+   git clone https://github.com/kesaruhasun/mcp-sliit-courseweb.git
+   cd mcp-sliit-courseweb && npm install && npm run build
+2. Run local HTTP/SSE bridge for ChatGPT (using supergateway):
+   npx -y supergateway --port 8000 -- node build/index.js
+3. In ChatGPT Desktop App:
+   • Go to Settings → Connectors (or Developer Mode)
+   • Toggle Developer Mode ON and click "Add MCP Server"
+   • Server Name: SLIIT Courseweb
+   • Server URL: http://localhost:8000/sse
+4. In ChatGPT, ask: "Check my enrolled Courseweb modules and list deadlines due this week."`,
+
       cursor: `You are my Cursor Composer agent. Please install and self-configure the SLIIT Courseweb MCP server in this workspace:
 1. Clone the repo if not already present:
    git clone https://github.com/kesaruhasun/mcp-sliit-courseweb.git
@@ -1226,6 +1268,26 @@
     }
   }
 }`,
+      codex: `# CLI command:
+codex mcp add sliit_courseweb --env HEADLESS=true -- node "/ABSOLUTE/PATH/TO/mcp-sliit-courseweb/build/index.js"
+
+# Or configure ~/.codex/config.toml (or .codex/config.toml):
+[mcp_servers.sliit_courseweb]
+command = "node"
+args = ["/ABSOLUTE/PATH/TO/mcp-sliit-courseweb/build/index.js"]
+enabled = true
+
+[mcp_servers.sliit_courseweb.env]
+HEADLESS = "true"`,
+      chatgpt: `# 1. Start local SSE bridge:
+npx -y supergateway --port 8000 -- node /ABSOLUTE/PATH/TO/mcp-sliit-courseweb/build/index.js
+
+# 2. Add in ChatGPT Desktop Settings -> Connectors:
+{
+  "name": "SLIIT Courseweb",
+  "url": "http://localhost:8000/sse",
+  "transport": "sse"
+}`,
       cursor: `{
   "mcpServers": {
     "sliit_courseweb": {
@@ -1267,9 +1329,10 @@
 
     function setAgentTab(agentKey) {
       activeAgentTab = agentKey;
-      const tabs = ['claude', 'antigravity', 'cursor', 'windsurf', 'claudedesktop'];
+      const tabs = ['claude', 'antigravity', 'codex', 'chatgpt', 'cursor', 'windsurf', 'claudedesktop'];
       tabs.forEach(t => {
         const btn = document.getElementById('tab-' + t);
+        if (!btn) return;
         if (t === agentKey) {
           btn.className = 'btn-spring shrink-0 px-3.5 py-2 rounded-lg border border-ink bg-ink text-white font-semibold transition-all flex items-center gap-2 shadow-xs';
         } else {
@@ -1280,14 +1343,16 @@
       const labelMap = {
         claude: 'Claude Code CLI',
         antigravity: 'Google Antigravity',
+        codex: 'OpenAI Codex',
+        chatgpt: 'ChatGPT Desktop App',
         cursor: 'Cursor Composer',
         windsurf: 'Windsurf Cascade',
         claudedesktop: 'Claude Desktop'
       };
 
-      document.getElementById('active-agent-label').innerHTML = `Target Agent: <strong class="text-white">${labelMap[agentKey]}</strong>`;
-      document.getElementById('agent-prompt-display').textContent = agentPrompts[agentKey];
-      document.getElementById('manual-json-display').textContent = manualJsons[agentKey];
+      document.getElementById('active-agent-label').innerHTML = `Target Agent: <strong class="text-white">${labelMap[agentKey] || agentKey}</strong>`;
+      document.getElementById('agent-prompt-display').textContent = agentPrompts[agentKey] || '';
+      document.getElementById('manual-json-display').textContent = manualJsons[agentKey] || '';
     }
 
     function copyActivePrompt() {
