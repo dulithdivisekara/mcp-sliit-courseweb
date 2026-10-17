@@ -412,7 +412,9 @@
 
         <!-- 3. Cursor Agent -->
         <button onclick="setAgentTab('cursor')" id="tab-cursor" class="btn-spring shrink-0 px-3.5 py-2 rounded-lg border border-hairline bg-page text-muted hover:text-ink font-semibold transition-all flex items-center gap-2">
-          <svg class="w-4 h-4 fill-current text-zinc-900" viewBox="0 0 24 24"><path d="M4 4l16 8-7 2-2 7L4 4z"/></svg>
+          <svg class="w-4 h-4 fill-current text-zinc-900" viewBox="0 0 24 24">
+            <path d="M12 1.5l9 5.2v10.6l-9 5.2-9-5.2V6.7l9-5.2zm0 2.3L4.8 8.4l7.2 4.2 7.2-4.2-7.2-4.6zm-7.2 6.5v7.6l6.2 3.6v-7.6l-6.2-3.6zm14.4 0l-6.2 3.6v7.6l6.2-3.6v-7.6z"/>
+          </svg>
           <span>Cursor</span>
         </button>
 
@@ -1158,25 +1160,25 @@
 4. Check if the build artifact exists and confirm tool schema registration for \`list_modules\`, \`sync_module\`, and \`get_deadlines\`.
 5. Instruct me on whether to perform \`interactive_login\` for MFA or inject \`MoodleSession\` with \`set_session_cookie\`.`,
 
-      cursor: `You are my Cursor coding agent. Please install and self-configure the SLIIT Courseweb MCP server in this workspace:
-1. Verify if git, node (v18+), and npm are installed.
-2. Clone \`https://github.com/kesaruhasun/mcp-sliit-courseweb.git\` if not already in workspace.
-3. In that folder, run: \`npm install && npm run build\`.
-4. Configure \`.cursor/mcp.json\` in workspace root:
+      cursor: `You are my Cursor Composer agent. Please install and self-configure the SLIIT Courseweb MCP server in this workspace:
+1. Clone the repo if not already present:
+   git clone https://github.com/kesaruhasun/mcp-sliit-courseweb.git
+2. Navigate into \`mcp-sliit-courseweb\` and compile:
+   npm install && npm run build
+3. Create or update \`.cursor/mcp.json\` in the workspace root with:
    {
      "mcpServers": {
        "sliit_courseweb": {
          "command": "node",
-         "args": ["<ABSOLUTE_PATH_TO_BUILD_INDEX_JS>"],
+         "args": ["\${workspaceFolder}/mcp-sliit-courseweb/build/index.js"],
          "env": {
-           "SLIIT_USERNAME": "your_it_number",
-           "SLIIT_PASSWORD": "your_password",
            "HEADLESS": "true"
          }
        }
      }
    }
-5. Check if \`storage_state.json\` exists. If not, guide me to run \`interactive_login\` or set my cookie via \`set_session_cookie\`.`,
+4. Confirm tool schema registration for \`list_modules\`, \`get_deadlines\`, and \`sync_module\`.
+5. Guide me on running \`interactive_login\` for Microsoft MFA or injecting \`MoodleSession\` via \`set_session_cookie\`.`,
 
       windsurf: `Cascade, please install the SLIIT Courseweb MCP server for this session:
 1. Clone \`https://github.com/kesaruhasun/mcp-sliit-courseweb.git\` and compile: \`npm install && npm run build\`.
@@ -1205,7 +1207,8 @@
       }
     }
   }
-}`
+}
+`
     };
 
     const manualJsons = {
@@ -1227,10 +1230,8 @@
   "mcpServers": {
     "sliit_courseweb": {
       "command": "node",
-      "args": ["/ABSOLUTE/PATH/TO/mcp-sliit-courseweb/build/index.js"],
+      "args": ["\${workspaceFolder}/mcp-sliit-courseweb/build/index.js"],
       "env": {
-        "SLIIT_USERNAME": "ITxxxxxxxx",
-        "SLIIT_PASSWORD": "your_password",
         "HEADLESS": "true"
       }
     }

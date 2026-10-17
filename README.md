@@ -97,25 +97,25 @@ Antigravity, please self-configure the SLIIT Courseweb MCP server:
 ### ⬛ Cursor Composer / IDE
 
 ```markdown
-You are my Cursor coding agent. Please install and self-configure the SLIIT Courseweb MCP server in this workspace:
-1. Verify if git, node (v18+), and npm are installed.
-2. Clone `https://github.com/kesaruhasun/mcp-sliit-courseweb.git`.
-3. Inside the cloned directory, run `npm install && npm run build`.
-4. Configure `.cursor/mcp.json` in workspace root:
+You are my Cursor Composer agent. Please install and self-configure the SLIIT Courseweb MCP server in this workspace:
+1. Clone the repository if not present:
+   git clone https://github.com/kesaruhasun/mcp-sliit-courseweb.git
+2. Navigate into `mcp-sliit-courseweb` and compile:
+   npm install && npm run build
+3. Create or update `.cursor/mcp.json` in the workspace root with:
    {
      "mcpServers": {
        "sliit_courseweb": {
          "command": "node",
-         "args": ["<ABSOLUTE_PATH_TO_BUILD_INDEX_JS>"],
+         "args": ["${workspaceFolder}/mcp-sliit-courseweb/build/index.js"],
          "env": {
-           "SLIIT_USERNAME": "your_it_number",
-           "SLIIT_PASSWORD": "your_password",
            "HEADLESS": "true"
          }
        }
      }
    }
-5. Check if `storage_state.json` exists. If not, guide me to run `interactive_login` or set my cookie via `set_session_cookie`.
+4. Confirm tool schema registration for `list_modules`, `get_deadlines`, and `sync_module`.
+5. Guide me on running `interactive_login` for Microsoft MFA or injecting `MoodleSession` via `set_session_cookie`.
 ```
 
 ### 🟩 Windsurf Cascade
