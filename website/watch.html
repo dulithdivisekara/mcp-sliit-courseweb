@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watch: SLIIT Courseweb MCP Server Demo — AI Agent Automation</title>
+  <meta name="description" content="Watch how the SLIIT Courseweb MCP Server connects Claude Code, Cursor, and Antigravity directly to Moodle to sync slides, track deadlines, and search 100-page exam marksheets.">
+  <link rel="canonical" href="https://sliitcoursewebmcp.kesaru.me/watch">
+  <link rel="icon" href="assets/kesaru-pig-logo-sm.jpg" type="image/jpeg">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="video.other">
+  <meta property="og:title" content="Watch: SLIIT Courseweb MCP Server Demo">
+  <meta property="og:description" content="Watch how SLIIT Courseweb MCP extracts marks from 103-page PDFs and syncs lecture slides in seconds.">
+  <meta property="og:url" content="https://sliitcoursewebmcp.kesaru.me/watch">
+  <meta property="og:image" content="https://sliitcoursewebmcp.kesaru.me/assets/courseweb-launch-poster.jpg">
+  <meta property="og:video" content="https://sliitcoursewebmcp.kesaru.me/assets/courseweb-launch-trailer.mp4">
+  <meta property="og:video:type" content="video/mp4">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="player">
+  <meta name="twitter:title" content="Watch: SLIIT Courseweb MCP Server Demo">
+  <meta name="twitter:description" content="AI Agent autonomous Moodle sync, deadline alerts, and marks parsing.">
+  <meta name="twitter:image" content="https://sliitcoursewebmcp.kesaru.me/assets/courseweb-launch-poster.jpg">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif; }
+    code, pre { font-family: 'Geist Mono', monospace; }
+  </style>
+
+  <!-- Dedicated Video Watch Page Structured Data (Solves GSC 'Video not on watch page') -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "@id": "https://sliitcoursewebmcp.kesaru.me/watch#video",
+    "name": "SLIIT Courseweb MCP Server — Launch Showcase & Demo",
+    "description": "Watch Claude Code autonomously parse a 103-page PDF exam marksheet, extract student scores, and perform delta slide syncs from SLIIT Courseweb.",
+    "thumbnailUrl": "https://sliitcoursewebmcp.kesaru.me/assets/courseweb-launch-poster.jpg",
+    "uploadDate": "2026-10-17T20:00:00+05:30",
+    "duration": "PT20S",
+    "contentUrl": "https://sliitcoursewebmcp.kesaru.me/assets/courseweb-launch-trailer.mp4",
+    "embedUrl": "https://sliitcoursewebmcp.kesaru.me/watch",
+    "inLanguage": "en",
+    "isFamilyFriendly": true,
+    "author": {
+      "@type": "Person",
+      "name": "Kesaru Hasun",
+      "url": "https://kesaru.me"
+    }
+  }
+  </script>
+</head>
+<body class="bg-zinc-950 text-zinc-100 min-h-screen flex flex-col justify-between selection:bg-emerald-500 selection:text-white">
+
+  <!-- Header -->
+  <header class="border-b border-zinc-800 bg-zinc-900/50 backdrop-blur px-4 sm:px-8 py-4">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 group">
+        <div class="w-7 h-7 rounded-lg overflow-hidden border border-zinc-700 bg-white">
+          <img src="assets/kesaru-pig-logo-sm.jpg" alt="Logo" class="w-full h-full object-cover">
+        </div>
+        <span class="font-semibold text-sm text-zinc-200 group-hover:text-white transition-colors">SLIIT Courseweb MCP</span>
+      </a>
+      <a href="/" class="text-xs font-medium text-emerald-400 hover:text-emerald-300 flex items-center gap-1">
+        <span>← Back to Homepage & 1-Prompt Setup</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Watch Theater -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12 flex-1 w-full">
+    <!-- Breadcrumb -->
+    <div class="text-xs text-zinc-500 mb-4 flex items-center gap-2">
+      <a href="/" class="hover:text-zinc-300">Home</a>
+      <span>/</span>
+      <span class="text-zinc-300">Watch</span>
+    </div>
+
+    <!-- Video Player (Primary Page Feature) -->
+    <div class="relative bg-black rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl aspect-video mb-6">
+      <video
+        id="demo-video"
+        src="assets/courseweb-launch-trailer.mp4"
+        poster="assets/courseweb-launch-poster.jpg"
+        controls
+        autoplay
+        playsinline
+        class="w-full h-full object-contain"
+      >
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <!-- Video Metadata -->
+    <div class="space-y-4 border-b border-zinc-800/80 pb-6 mb-6">
+      <h1 class="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-white">
+        SLIIT Courseweb MCP Server — Launch Showcase & Demo
+      </h1>
+      <div class="flex flex-wrap items-center gap-4 text-xs text-zinc-400">
+        <span class="flex items-center gap-1.5 font-medium text-emerald-400">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Official Showcase
+        </span>
+        <span>•</span>
+        <span>Duration: 0:20</span>
+        <span>•</span>
+        <span>Published Oct 17, 2026</span>
+        <span>•</span>
+        <span>Author: <a href="https://kesaru.me" target="_blank" class="text-zinc-300 hover:underline">Kesaru Hasun</a></span>
+      </div>
+      <p class="text-sm text-zinc-400 leading-relaxed">
+        Watch how Claude Code and AI coding assistants use the Model Context Protocol (MCP) to interact with SLIIT Courseweb (Moodle). The assistant scans a 103-page exam results PDF, extracts exact student scores, monitors assignment deadlines, and downloads lecture slides automatically.
+      </p>
+    </div>
+
+    <!-- CTA & Key Highlights -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+      <div class="p-4 rounded-xl bg-zinc-900 border border-zinc-800">
+        <h3 class="text-sm font-semibold text-white mb-2">⚡ What you see in this demo:</h3>
+        <ul class="text-xs text-zinc-400 space-y-1.5 list-disc list-inside">
+          <li>Interactive Microsoft MFA login without exposing credentials</li>
+          <li>Instant mark retrieval from row 2,543 in a 103-page PDF</li>
+          <li>Bulk slide & tutorial delta sync directly into local folders</li>
+          <li>Prioritized assignment deadline alerts across all 6 modules</li>
+        </ul>
+      </div>
+
+      <div class="p-4 rounded-xl bg-emerald-950/40 border border-emerald-800/60 flex flex-col justify-between">
+        <div>
+          <h3 class="text-sm font-semibold text-emerald-300 mb-1">Ready to automate your Courseweb?</h3>
+          <p class="text-xs text-emerald-400/80">Configure your agent in 1 prompt. Works with Claude Code, Cursor, Codex, ChatGPT, and Antigravity.</p>
+        </div>
+        <div class="pt-4">
+          <a href="/#install" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs px-4 py-2 rounded-lg transition-colors">
+            <span>⚡ Copy 1-Click Install Prompt</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-zinc-800 py-6 px-4 text-center text-xs text-zinc-500">
+    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+      <span>Built for SLIIT students • Free & Open Source</span>
+      <div class="flex items-center gap-4">
+        <a href="/" class="hover:text-zinc-300">Home</a>
+        <a href="https://github.com/kesaruhasun/mcp-sliit-courseweb" target="_blank" class="hover:text-zinc-300">GitHub</a>
+        <a href="https://kesaru.me" target="_blank" class="hover:text-zinc-300">kesaru.me</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

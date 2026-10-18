@@ -42,6 +42,12 @@ export default {
       return new Response(object.body, { headers });
     }
 
+    // Dedicated Watch Page route for SEO & Video Indexing
+    if (url.pathname === "/watch") {
+      const watchReq = new Request(new URL("/watch.html", request.url), request);
+      return env.ASSETS.fetch(watchReq);
+    }
+
     // Serve static assets from the website directory
     return env.ASSETS.fetch(request);
   }

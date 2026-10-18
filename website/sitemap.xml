@@ -2,6 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <!-- 01. Homepage & Multi-Language Hub -->
   <url>
     <loc>https://sliitcoursewebmcp.kesaru.me/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://sliitcoursewebmcp.kesaru.me/"/>
@@ -11,9 +12,17 @@
     <lastmod>2026-10-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+
+  <!-- 02. Dedicated Video Watch Page (Resolves GSC Video Indexing) -->
+  <url>
+    <loc>https://sliitcoursewebmcp.kesaru.me/watch</loc>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
     <video:video>
       <video:thumbnail_loc>https://sliitcoursewebmcp.kesaru.me/assets/courseweb-launch-poster.jpg</video:thumbnail_loc>
-      <video:title>SLIIT Courseweb MCP Server — Launch Showcase</video:title>
+      <video:title>SLIIT Courseweb MCP Server — Launch Showcase &amp; Demo</video:title>
       <video:description>Watch how SLIIT Courseweb MCP extracts exam marks from 103-page PDFs, tracks assignment deadlines, and configures itself into AI agents.</video:description>
       <video:content_loc>https://sliitcoursewebmcp.kesaru.me/assets/courseweb-launch-trailer.mp4</video:content_loc>
       <video:duration>20</video:duration>
