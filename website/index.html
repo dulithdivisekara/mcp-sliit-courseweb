@@ -263,60 +263,102 @@
   <header class="sticky top-0 z-50 bg-page/90 backdrop-blur-md border-b border-hairline">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-3">
       <!-- Left: Pig Brand Logo + Wordmark -->
-      <a href="https://kesaru.me" target="_blank" class="flex items-center gap-2 group shrink-0">
+      <a href="https://kesaru.me" target="_blank" class="flex items-center gap-2 group shrink-0 min-w-0">
         <div class="w-7 h-7 rounded-lg overflow-hidden border border-hairline bg-white shrink-0 group-hover:scale-105 transition-transform">
           <img src="assets/kesaru-pig-logo-sm.jpg" alt="Kesaru Flying Pig Logo" class="w-full h-full object-cover">
         </div>
-        <span class="font-semibold text-xs sm:text-sm tracking-tight text-ink group-hover:text-zinc-600 transition-colors">sliit-courseweb-mcp</span>
-        <span class="hidden sm:inline-block font-mono text-[10px] text-muted border border-hairline px-1.5 py-0.5 rounded bg-white">v1.0.0</span>
+        <span class="font-semibold text-xs sm:text-sm tracking-tight text-ink group-hover:text-zinc-600 transition-colors truncate max-w-[140px] sm:max-w-none">sliit-courseweb-mcp</span>
+        <span class="hidden sm:inline-block font-mono text-[10px] text-muted border border-hairline px-1.5 py-0.5 rounded bg-white shrink-0">v1.0.0</span>
       </a>
 
-      <!-- Center-Right: Navigation Links (Desktop) -->
-      <nav class="hidden md:flex items-center gap-5 text-[13px] font-medium text-muted">
-        <a href="#problems" class="hover:text-ink transition-colors">
-          <span class="lang-en">The Struggle (Before vs Now)</span>
-          <span class="lang-si">ප්‍රශ්න සහ විසඳුම</span>
-          <span class="lang-ta">சிக்கல்கள் & தீர்வு</span>
+      <!-- Center-Right: Navigation Links (Desktop - 1024px and up) -->
+      <nav class="hidden lg:flex items-center gap-6 text-[13px] font-medium text-muted whitespace-nowrap">
+        <a href="#problems" class="hover:text-ink transition-colors shrink-0">
+          <span class="lang-en">Why AI</span>
+          <span class="lang-si">ඇයි AI</span>
+          <span class="lang-ta">ஏன் AI</span>
         </a>
-        <a href="#install" class="hover:text-ink transition-colors">
-          <span class="lang-en">1-Prompt Install</span>
-          <span class="lang-si">Install කරමු</span>
-          <span class="lang-ta">Install செய்க</span>
+        <a href="#install" class="hover:text-ink transition-colors shrink-0">
+          <span class="lang-en">Install</span>
+          <span class="lang-si">Install</span>
+          <span class="lang-ta">Install</span>
         </a>
-        <a href="#demo" class="hover:text-ink transition-colors">
-          <span class="lang-en">Live Video</span>
+        <a href="#demo" class="hover:text-ink transition-colors shrink-0">
+          <span class="lang-en">Video Demo</span>
           <span class="lang-si">Demo වීඩියෝව</span>
           <span class="lang-ta">Demo வீடியோ</span>
         </a>
-        <a href="#auth" class="hover:text-ink transition-colors">
+        <a href="#auth" class="hover:text-ink transition-colors shrink-0">
           <span class="lang-en">Login Guide</span>
           <span class="lang-si">ලොග් වෙන ක්‍රම</span>
           <span class="lang-ta">உள்நுழைவு முறை</span>
         </a>
-        <a href="https://kesaru.me/about" target="_blank" class="hover:text-ink transition-colors flex items-center gap-0.5">
+        <a href="https://kesaru.me/about" target="_blank" class="hover:text-ink transition-colors flex items-center gap-0.5 shrink-0">
           <span>About</span>
           <span class="text-[10px] text-muted">↗</span>
         </a>
       </nav>
 
-      <!-- Right: Language Toggle & GitHub Star Pill (Optimized for all viewports) -->
+      <!-- Right: Language Toggle, GitHub Star Pill & Mobile Hamburger Menu -->
       <div class="flex items-center gap-2 sm:gap-3 shrink-0">
         <!-- Language Switcher Pills -->
-        <div class="flex items-center p-0.5 rounded-lg border border-hairline bg-white text-xs font-mono">
+        <div class="flex items-center p-0.5 rounded-lg border border-hairline bg-white text-xs font-mono shrink-0">
           <button onclick="setLanguage('en')" id="btn-lang-en" class="px-2 py-0.5 sm:py-1 rounded font-medium transition-all bg-ink text-white">EN</button>
           <button onclick="setLanguage('si')" id="btn-lang-si" class="px-2 py-0.5 sm:py-1 rounded font-medium transition-all text-muted hover:text-ink">සිං</button>
           <button onclick="setLanguage('ta')" id="btn-lang-ta" class="px-2 py-0.5 sm:py-1 rounded font-medium transition-all text-muted hover:text-ink">தமி</button>
         </div>
 
         <!-- Star on GitHub Button (Compact icon on small mobile, full text on sm+) -->
-        <a href="https://github.com/kesaruhasun/mcp-sliit-courseweb" target="_blank" rel="noopener noreferrer" class="btn-spring inline-flex items-center gap-1.5 bg-ink text-white text-xs font-medium px-2.5 sm:px-3.5 py-1.5 rounded-full hover:bg-zinc-800">
+        <a href="https://github.com/kesaruhasun/mcp-sliit-courseweb" target="_blank" rel="noopener noreferrer" class="btn-spring inline-flex items-center gap-1.5 bg-ink text-white text-xs font-medium px-2.5 sm:px-3.5 py-1.5 rounded-full hover:bg-zinc-800 shrink-0">
           <svg class="w-3.5 h-3.5 fill-current text-amber-400 shrink-0" viewBox="0 0 24 24">
             <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.784 1.399 8.165-7.333-3.856-7.333 3.856 1.399-8.165-5.934-5.784 8.2-1.192zm0 5.702l-2.232 4.523-4.991.725 3.612 3.521-.852 4.97 4.463-2.347 4.463 2.347-.852-4.97 3.612-3.521-4.991-.725z"/>
           </svg>
           <span class="hidden sm:inline">Star</span>
           <span class="hidden sm:inline text-zinc-400 font-mono text-[10px] border-l border-zinc-700 pl-1.5">GitHub</span>
         </a>
+
+        <!-- Mobile & Tablet Menu Toggle Button (Visible < 1024px) -->
+        <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="lg:hidden p-1.5 rounded-lg border border-hairline bg-white text-muted hover:text-ink transition-colors flex items-center justify-center shrink-0" aria-label="Toggle navigation menu">
+          <svg id="menu-icon-open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="menu-icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
       </div>
+    </div>
+
+    <!-- Mobile & Tablet Dropdown Navigation Drawer -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-hairline bg-page/95 backdrop-blur-md px-4 py-3 space-y-1 shadow-lg">
+      <a href="#problems" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm font-medium text-ink hover:bg-zinc-100 transition-colors">
+        <span class="lang-en">Why AI (Before vs Now)</span>
+        <span class="lang-si">ඇයි AI (ප්‍රශ්න සහ විසඳුම)</span>
+        <span class="lang-ta">ஏன் AI (சிக்கல்கள் & தீர்வு)</span>
+      </a>
+      <a href="#install" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm font-medium text-ink hover:bg-zinc-100 transition-colors">
+        <span class="lang-en">1-Prompt Install</span>
+        <span class="lang-si">Install කරමු</span>
+        <span class="lang-ta">Install செய்க</span>
+      </a>
+      <a href="#demo" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm font-medium text-ink hover:bg-zinc-100 transition-colors">
+        <span class="lang-en">Live Video Demo</span>
+        <span class="lang-si">Demo වීඩියෝව</span>
+        <span class="lang-ta">Demo வீடியோ</span>
+      </a>
+      <a href="#auth" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm font-medium text-ink hover:bg-zinc-100 transition-colors">
+        <span class="lang-en">Login & MFA Guide</span>
+        <span class="lang-si">ලොග් වෙන ක්‍රම</span>
+        <span class="lang-ta">உள்நுழைவு முறை</span>
+      </a>
+      <a href="/watch" class="block px-3 py-2 rounded-lg text-sm font-medium text-ink hover:bg-zinc-100 transition-colors">
+        <span class="lang-en">Watch Trailer Theater ↗</span>
+        <span class="lang-si">වීඩියෝ Watch Theater ↗</span>
+        <span class="lang-ta">வீடியோ திரை ↗</span>
+      </a>
+      <a href="https://kesaru.me/about" target="_blank" class="block px-3 py-2 rounded-lg text-sm font-medium text-muted hover:text-ink hover:bg-zinc-100 transition-colors">
+        <span>About Kesaru ↗</span>
+      </a>
     </div>
   </header>
 
@@ -1422,6 +1464,21 @@ npx -y supergateway --port 8000 -- node /ABSOLUTE/PATH/TO/mcp-sliit-courseweb/bu
       } else {
         player.muted = true;
         btn.innerHTML = '<span>🔊 Turn Sound On</span>';
+      }
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const openIcon = document.getElementById('menu-icon-open');
+      const closeIcon = document.getElementById('menu-icon-close');
+      if (menu.classList.contains('hidden')) {
+        menu.classList.remove('hidden');
+        openIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+      } else {
+        menu.classList.add('hidden');
+        openIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
       }
     }
 
