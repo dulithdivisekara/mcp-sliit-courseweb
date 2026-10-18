@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>SLIIT Courseweb MCP Server — Bridge Moodle into Cursor, Claude & AI Agents</title>
-  <meta name="description" content="Model Context Protocol (MCP) server for SLIIT Courseweb. Sync slides, track assignment deadlines, and inspect grades directly from Cursor, Claude Code, and Antigravity.">
-  <meta name="keywords" content="SLIIT, Courseweb, MCP, Model Context Protocol, Claude Desktop, Cursor, Antigravity, Moodle Automation, Sri Lanka">
+  <title>SLIIT Courseweb (Moodle) AI Assistant & MCP Server — Smart Courseweb Automation</title>
+  <meta name="description" content="Automate SLIIT Courseweb (courseweb.sliit.lk). Bulk download lecture slides, track assignment deadlines, and find exam marks with Claude Code, Codex, ChatGPT, Cursor & Antigravity.">
+  <meta name="keywords" content="Courseweb, SLIIT Courseweb, courseweb.sliit.lk, SLIIT Moodle, Courseweb login, Courseweb download slides, Courseweb deadline tracker, SLIIT student portal, Model Context Protocol, MCP server, Sri Lanka">
 
   <!-- Favicon using Kesaru's Flying Pig Logo -->
   <link rel="icon" href="assets/kesaru-pig-logo-sm.jpg" type="image/jpeg">
@@ -155,6 +155,22 @@
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "Yes. The AI assistant can download the exam results PDF from Courseweb and scan through hundreds of pages in seconds to find your specific IT number, midterm marks, lab assessment scores, and grade breakdown."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How can I download all lecture slides from SLIIT Courseweb automatically?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Using the sync_module tool in this MCP server, your AI assistant downloads all weekly lecture slides, tutorials, and lab PDFs for any enrolled module directly to your computer in one go, without clicking through Moodle manually."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can AI alert me about upcoming SLIIT Courseweb assignment deadlines?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. The get_deadlines tool queries all upcoming assignment submissions, quizzes, and project milestones across every enrolled module on courseweb.sliit.lk and organizes them chronologically so you never miss a submission."
             }
           }
         ]
@@ -317,7 +333,18 @@
   <!-- ========================================================================= -->
   <!-- 02. HERO SECTION (PROBLEM-FIRST FOR SLIIT STUDENTS)                       -->
   <!-- ========================================================================= -->
-  <section class="pt-14 sm:pt-20 pb-8 px-4 sm:px-6 max-w-4xl mx-auto text-center">
+  <section class="pt-12 sm:pt-16 pb-8 px-4 sm:px-6 max-w-4xl mx-auto text-center">
+    <!-- Quick Navigational Bridge for Courseweb Searchers (Improves SEO & Dwell Time) -->
+    <div class="mb-4 inline-flex flex-wrap items-center justify-center gap-2 px-3 py-1.5 rounded-lg bg-zinc-100/90 border border-hairline text-[11px] text-muted">
+      <span>Looking for the official SLIIT Moodle portal?</span>
+      <a href="https://courseweb.sliit.lk" target="_blank" rel="noopener noreferrer" class="font-medium text-ink hover:text-emerald-700 underline underline-offset-2 flex items-center gap-0.5">
+        <span>courseweb.sliit.lk login</span>
+        <span class="text-[10px]">↗</span>
+      </a>
+      <span class="hidden sm:inline text-zinc-300">•</span>
+      <span class="text-zinc-600 font-normal">Or automate your downloads, marks & deadlines with AI below ↓</span>
+    </div>
+
     <!-- Announcement Badge -->
     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-hairline bg-white text-xs font-mono text-muted mb-6 shadow-xs">
       <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -1025,6 +1052,36 @@
           </summary>
           <div class="text-xs text-muted leading-relaxed mt-2.5 pr-6 font-normal">
             Run the <code>interactive_login</code> tool. It launches a visible browser window, pre-fills your email, and pauses so you can approve the prompt on your Microsoft Authenticator app.
+          </div>
+        </details>
+
+        <details class="group py-4">
+          <summary class="flex items-center justify-between cursor-pointer font-medium text-sm text-ink group-open:text-zinc-600">
+            <span>How can I download all lecture slides from Courseweb automatically?</span>
+            <span class="font-mono text-muted group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <div class="text-xs text-muted leading-relaxed mt-2.5 pr-6 font-normal">
+            Using the <code>sync_module</code> tool, your AI assistant scans the Moodle section hierarchy for any enrolled module, detects all lecture slides, tutorials, and lab PDFs, and downloads them neatly organized into local folders in one command.
+          </div>
+        </details>
+
+        <details class="group py-4">
+          <summary class="flex items-center justify-between cursor-pointer font-medium text-sm text-ink group-open:text-zinc-600">
+            <span>Can AI alert me about upcoming Courseweb assignment deadlines?</span>
+            <span class="font-mono text-muted group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <div class="text-xs text-muted leading-relaxed mt-2.5 pr-6 font-normal">
+            Yes. The <code>get_deadlines</code> tool extracts all upcoming submission cutoffs, quizzes, and project deliverables across all your subjects on Courseweb and presents them in a prioritized, chronological list.
+          </div>
+        </details>
+
+        <details class="group py-4">
+          <summary class="flex items-center justify-between cursor-pointer font-medium text-sm text-ink group-open:text-zinc-600">
+            <span>How does it find my marks inside a 100+ page exam PDF?</span>
+            <span class="font-mono text-muted group-open:rotate-45 transition-transform">+</span>
+          </summary>
+          <div class="text-xs text-muted leading-relaxed mt-2.5 pr-6 font-normal">
+            Instead of manually searching row-by-row on your phone, your AI assistant downloads the published results PDF, parses the tabular data, matches your specific IT number, and extracts your exact score and grade breakdown in seconds.
           </div>
         </details>
 
