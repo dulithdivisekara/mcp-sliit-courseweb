@@ -1,16 +1,31 @@
 {
-  "name": "courseweb_automation",
-  "version": "1.0.0",
-  "description": "",
+  "name": "mcp-sliit-courseweb",
+  "version": "1.1.0",
+  "description": "High-performance Model Context Protocol (MCP) server for SLIIT Courseweb (Moodle), optimized for Linux and AI agents.",
   "type": "module",
   "scripts": {
     "build": "tsc",
     "start": "node build/index.js",
     "dev": "tsx src/index.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dulithdivisekara/mcp-sliit-courseweb.git"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "sliit",
+    "courseweb",
+    "moodle",
+    "playwright",
+    "claude-desktop",
+    "antigravity",
+    "linux",
+    "ubuntu"
+  ],
+  "author": "Dulith Divisekara",
+  "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
     "dotenv": "^17.4.2",
