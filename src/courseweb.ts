@@ -54,25 +54,52 @@ export function sanitizeFilename(name: string): string {
         .slice(0, 180);
 }
 
-export function extractEmbeddedLinks(textOrHtml: string): { videoUrl?: string; meetingUrl?: string; externalUrl?: string } {
-    const result: { videoUrl?: string; meetingUrl?: string; externalUrl?: string } = {};
-    if (!textOrHtml) return result;
+export interface ExtractedLinks {
+    videoUrls: string[];
+    meetingUrls: string[];
+    externalUrls: string[];
+    videoUrl?: string | undefined;
+    meetingUrl?: string | undefined;
+    externalUrl?: string | undefined;
+}
 
-    const unistreamMatch = textOrHtml.match(/https?:\/\/unistream\.sliit\.lk\/[^\s"'<>]+/i);
-    if (unistreamMatch) result.videoUrl = unistreamMatch[0];
+export function extractEmbeddedLinks(textOrHtml: string): ExtractedLinks {
+    const videoSet = new Set<string>();
+    const meetingSet = new Set<string>();
+    const externalSet = new Set<string>();
 
-    const teamsMatch = textOrHtml.match(/https?:\/\/teams\.microsoft\.com\/[^\s"'<>]+/i);
-    if (teamsMatch) result.meetingUrl = teamsMatch[0];
-
-    const zoomMatch = textOrHtml.match(/https?:\/\/[a-z0-9.-]*zoom\.us\/[^\s"'<>]+/i);
-    if (zoomMatch) result.meetingUrl = zoomMatch[0];
-
-    const extMatch = textOrHtml.match(/https?:\/\/(?!courseweb\.sliit\.lk)[^\s"'<>]+/i);
-    if (extMatch && extMatch[0] !== result.videoUrl && extMatch[0] !== result.meetingUrl) {
-        result.externalUrl = extMatch[0];
+    if (!textOrHtml) {
+        return { videoUrls: [], meetingUrls: [], externalUrls: [] };
     }
 
-    return result;
+    const videoMatches = textOrHtml.match(/https?:\/\/(?:unistream\.sliit\.lk|(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)|[a-z0-9.-]*panopto\.com)[^\s"'<>]+/gi) || [];
+    videoMatches.forEach(url => videoSet.add(url));
+
+    const teamsMatches = textOrHtml.match(/https?:\/\/teams\.microsoft\.com\/[^\s"'<>]+/gi) || [];
+    teamsMatches.forEach(url => meetingSet.add(url));
+
+    const zoomMatches = textOrHtml.match(/https?:\/\/[a-z0-9.-]*zoom\.us\/[^\s"'<>]+/gi) || [];
+    zoomMatches.forEach(url => meetingSet.add(url));
+
+    const extMatches = textOrHtml.match(/https?:\/\/[^\s"'<>]+/gi) || [];
+    extMatches.forEach(url => {
+        if (!url.includes('courseweb.sliit.lk') && !videoSet.has(url) && !meetingSet.has(url)) {
+            externalSet.add(url);
+        }
+    });
+
+    const videoUrls = Array.from(videoSet);
+    const meetingUrls = Array.from(meetingSet);
+    const externalUrls = Array.from(externalSet);
+
+    return {
+        videoUrls,
+        meetingUrls,
+        externalUrls,
+        videoUrl: videoUrls[0],
+        meetingUrl: meetingUrls[0],
+        externalUrl: externalUrls[0]
+    };
 }
 
 export class CoursewebClient {
@@ -118,7 +145,7 @@ export class CoursewebClient {
             value: cookieValue,
             domain: 'courseweb.sliit.lk',
             path: '/',
-            httpOnly: false,
+            httpOnly: true,
             secure: true,
             sameSite: 'None'
         }]);
@@ -126,14 +153,6 @@ export class CoursewebClient {
         const sessionPath = path.resolve(__dirname, '../storage_state.json');
         await tempContext.storageState({ path: sessionPath });
         await tempContext.close();
-
-        // Also update parent directory storage state if it exists
-        const rootSessionPath = '/home/dulith/mcp-sliit-courseweb/storage_state.json';
-        try {
-            if (fs.existsSync('/home/dulith/mcp-sliit-courseweb')) {
-                fs.copyFileSync(sessionPath, rootSessionPath);
-            }
-        } catch {}
         
         if (this.context) {
             await this.context.close();
@@ -562,15 +581,32 @@ export class CoursewebClient {
                                         const fragJson = await fragRes.json();
                                         const fragHtml = fragJson[0]?.data?.html || '';
                                         if (fragHtml) {
-                                            const links = extractEmbeddedLinks(fragHtml);
-                                            if (links.videoUrl || links.meetingUrl || links.externalUrl) {
-                                                // Attach to the first activity or as a dedicated item
-                                                activities.forEach(act => {
-                                                    if (links.videoUrl && (act.name.toLowerCase().includes('lecture') || act.name.toLowerCase().includes('slide'))) {
-                                                        act.videoUrl = links.videoUrl;
+                                            // 1. Try to associate links per individual module container
+                                            for (const act of activities) {
+                                                if (act.id) {
+                                                    const cmRegex = new RegExp(`id=["']module-${act.id}["'][\\s\\S]*?(?=<li[^>]*id=["']module-\\d+["']|$)`, 'i');
+                                                    const cmMatch = fragHtml.match(cmRegex);
+                                                    if (cmMatch && cmMatch[0]) {
+                                                        const actLinks = extractEmbeddedLinks(cmMatch[0]);
+                                                        if (actLinks.videoUrl) act.videoUrl = actLinks.videoUrl;
+                                                        if (actLinks.meetingUrl) act.meetingUrl = actLinks.meetingUrl;
+                                                        if (actLinks.externalUrl) act.externalUrl = actLinks.externalUrl;
                                                     }
-                                                    if (links.meetingUrl && (act.name.toLowerCase().includes('tutorial') || act.name.toLowerCase().includes('tute') || act.name.toLowerCase().includes('meeting'))) {
-                                                        act.meetingUrl = links.meetingUrl;
+                                                }
+                                            }
+
+                                            // 2. Extract section-level links (from labels, summaries, etc.)
+                                            const sectionLinks = extractEmbeddedLinks(fragHtml);
+                                            if (sectionLinks.videoUrl || sectionLinks.meetingUrl || sectionLinks.externalUrl) {
+                                                activities.forEach(act => {
+                                                    if (!act.externalUrl && sectionLinks.externalUrl && (act.type === 'url' || act.type === 'other')) {
+                                                        act.externalUrl = sectionLinks.externalUrl;
+                                                    }
+                                                    if (!act.videoUrl && sectionLinks.videoUrl && (act.type === 'url' || act.type === 'file' || act.name.toLowerCase().includes('lecture') || act.name.toLowerCase().includes('slide') || act.name.toLowerCase().includes('recording'))) {
+                                                        act.videoUrl = sectionLinks.videoUrl;
+                                                    }
+                                                    if (!act.meetingUrl && sectionLinks.meetingUrl && (act.type === 'url' || act.name.toLowerCase().includes('meeting') || act.name.toLowerCase().includes('tutorial') || act.name.toLowerCase().includes('tute') || act.name.toLowerCase().includes('discussion') || act.type === 'other')) {
+                                                        act.meetingUrl = sectionLinks.meetingUrl;
                                                     }
                                                 });
                                             }
@@ -688,9 +724,11 @@ export class CoursewebClient {
                     response = await this.context.request.get(cleanUrl + '/?forcedownload=1', { timeout: 25000 });
                 }
 
-                const contentType = response.headers()['content-type'] || '';
+                const contentType = (response.headers()['content-type'] || '').toLowerCase();
                 const contentDisposition = response.headers()['content-disposition'] || '';
-                const isBinary = !contentType.includes('text/html') || contentDisposition.includes('filename=') || response.url().includes('pluginfile.php');
+                const hasAttachment = contentDisposition.toLowerCase().includes('filename');
+                const isHtml = contentType.includes('text/html') && !hasAttachment;
+                const isBinary = !isHtml;
                 
                 if (response.status() === 200 && isBinary) {
                     let filename = customFilename;
@@ -788,7 +826,7 @@ export class CoursewebClient {
         }
     }
 
-    async syncModule(courseId: string, outputDirectory: string = './downloads', organizeBySection: boolean = true): Promise<string[]> {
+    async syncModule(courseId: string, outputDirectory: string = './downloads', organizeBySection: boolean = false): Promise<string[]> {
         const sections = await this.getModuleContent(courseId);
         const results: string[] = [];
         

@@ -134,7 +134,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
             },
             organizeBySection: {
               type: "boolean",
-              description: "Optional: Whether to organize files into subfolders by section name. Defaults to true",
+              description: "Optional: Whether to organize files into subfolders by section name. Defaults to false",
             },
           },
           required: ["courseId"],
@@ -231,7 +231,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           outputDir: z.string().optional(),
           organizeBySection: z.boolean().optional()
         }).parse(request.params.arguments);
-        const results = await client.syncModule(args.courseId, args.outputDir, args.organizeBySection ?? true);
+        const results = await client.syncModule(args.courseId, args.outputDir, args.organizeBySection ?? false);
         return {
           content: [{ type: "text", text: JSON.stringify(results, null, 2) }],
         };
